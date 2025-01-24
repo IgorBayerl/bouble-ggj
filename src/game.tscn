@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c06wp40dkre0d"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Planet" type="CSGSphere3D" parent="."]
+radius = 2.79586
+radial_segments = 30
+rings = 30
