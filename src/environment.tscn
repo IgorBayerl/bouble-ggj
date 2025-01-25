@@ -561,10 +561,18 @@ transform = Transform3D(0.724461, -0.689316, 0.000457153, 0.689316, 0.72446, -0.
 transform = Transform3D(-0.865589, 0.500756, 0, -0.418016, -0.722568, -0.550597, -0.275715, -0.476591, 0.834771, 21.8007, -36.89, -25.3793)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = 748.0
-offset_top = 266.0
-offset_right = 1262.0
-offset_bottom = 780.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -396.0
+offset_top = -376.0
+offset_right = 118.0
+offset_bottom = 138.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.930059, 0.941135)
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -583,27 +591,27 @@ mesh = ExtResource("22_diu10")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.9, 0, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.9, 0, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.9)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.9)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="SubViewportContainer/SubViewport"]
@@ -613,7 +621,7 @@ gravity_scale = 0.0
 script = ExtResource("21_6kw36")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
-transform = Transform3D(-1, -4.37114e-08, 2.98023e-08, -4.37114e-08, 1, 4.37114e-08, -2.98023e-08, 4.37114e-08, -1, 0, -1.8353, 0.0675354)
+transform = Transform3D(-0.901486, -3.94052e-08, 2.68663e-08, -3.94052e-08, 0.901486, 3.94052e-08, -2.68663e-08, 3.94052e-08, -0.901486, 0.000406742, -1.70876, -0.0462341)
 mesh = ExtResource("24_jusxr")
 skeleton = NodePath("../..")
 
