@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwwr18usd201h"]
 
-[ext_resource type="Texture2D" uid="uid://dojjv586gldbx" path="res://8k_earth_daymap.jpg" id="1_rvc1j"]
+[ext_resource type="Texture2D" uid="uid://dojjv586gldbx" path="res://assets/8k_earth_daymap.jpg" id="1_rvc1j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gib46"]
 bounce = 0.18

@@ -28,8 +28,9 @@ environment = SubResource("Environment_acga3")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.204, 23.5005)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.161638, -0.384277, 0.908958, 1.02816e-07, 0.92107, 0.389398, -0.98685, 0.0629418, -0.14888, 68.7294, 31.7673, -4.03875)
-fov = 70.0
-
 [node name="NewPlayer" parent="." instance=ExtResource("2_r267b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.8387, 0)
+
+[node name="Camera3D" type="Camera3D" parent="NewPlayer"]
+transform = Transform3D(1, 0, 0, 0, 0.609564, 0.792737, 0, -0.792737, 0.609564, 0, 13.7584, 4.62685)
+fov = 70.0

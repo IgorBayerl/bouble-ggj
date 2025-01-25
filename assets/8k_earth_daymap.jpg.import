@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dojjv586gldbx"
-path.s3tc="res://.godot/imported/8k_earth_daymap.jpg-2385140b276232f343528a53868d8459.s3tc.ctex"
+path.s3tc="res://.godot/imported/8k_earth_daymap.jpg-b7cd6ea887f5a9cb1811388e71a30e7d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://8k_earth_daymap.jpg"
-dest_files=["res://.godot/imported/8k_earth_daymap.jpg-2385140b276232f343528a53868d8459.s3tc.ctex"]
+source_file="res://assets/8k_earth_daymap.jpg"
+dest_files=["res://.godot/imported/8k_earth_daymap.jpg-b7cd6ea887f5a9cb1811388e71a30e7d.s3tc.ctex"]
 
 [params]
 

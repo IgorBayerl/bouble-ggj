@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	# Handle rotation input
 	var rotate_input := Input.get_axis("turn_left", "turn_right")
 	if rotate_input != 0:
-		rotate_player(rotate_input, delta)
+		rotate_player(-rotate_input, delta)
 	
 	# Align with planetary surface
 	align_with_planet(desired_up)
