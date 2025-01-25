@@ -56,6 +56,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6072, -27.7886, -12.0018)
 [node name="ItemSpawner9" parent="World" instance=ExtResource("1_nwftp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2486, -27.7886, -3.03259)
 
+[node name="ItemSpawner10" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2144, 12.3232, -26.3454)
+
+[node name="ItemSpawner11" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2144, 18.7058, -23.2301)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_acga3")
 
