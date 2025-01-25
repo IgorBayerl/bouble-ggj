@@ -1,7 +1,81 @@
-[gd_scene load_steps=2 format=3 uid="uid://b71uubqd8h2n2"]
+[gd_scene load_steps=11 format=3 uid="uid://b71uubqd8h2n2"]
 
+[ext_resource type="Script" path="res://src/components/floating/buildingPlacer.gd" id="1_axfl4"]
 [ext_resource type="PackedScene" uid="uid://b7dpc436pibol" path="res://assets/Models/Building2.blend" id="1_thagv"]
+[ext_resource type="Material" uid="uid://wdji170sloo7" path="res://assets/Materials/Mat_GlowColor.tres" id="2_7nnn7"]
 
-[node name="building2" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_042ax"]
+size = Vector3(6.63922, 18.9411, 6.68726)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5f0m"]
+size = Vector3(4.22072, 15.1195, 2.78351)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmn5s"]
+size = Vector3(9.40308, 8.29639, 2.82568)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fi7f7"]
+size = Vector3(5.60559, 8.29639, 2.58716)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ygq6a"]
+size = Vector3(2.271, 9.37781, 5.48352)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b12ff"]
+size = Vector3(9.66589, 11.2577, 14.6333)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ctss"]
+radius = 2.70639
+height = 34.8012
+
+[node name="building2" type="StaticBody3D"]
+script = ExtResource("1_axfl4")
 
 [node name="Building2" parent="." instance=ExtResource("1_thagv")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Cube" parent="Building2" index="0"]
+transform = Transform3D(0.800643, 0.202564, 0, -0.202564, 0.800643, 0, 0, 0, 0.82587, 2.03502, 0.676604, 0)
+surface_material_override/2 = ExtResource("2_7nnn7")
+
+[node name="Cube_002" parent="Building2" index="2"]
+transform = Transform3D(0.377315, 0.0796984, 0, -0.0954613, 0.315011, 0, 0, 0, 0.527926, 2.51825, 2.52107, -0.6691)
+
+[node name="Cube_003" parent="Building2" index="3"]
+transform = Transform3D(0.984402, -0.0728121, 0, 0.175934, 0.407406, 0, 0, 0, 1.54881, -3.45897, 0.243086, 0.549972)
+
+[node name="Cylinder" parent="Building2" index="6"]
+transform = Transform3D(0.756317, -0.13517, 0, 0.13517, 0.756317, 0, 0, 0, 0.768301, -3.50484, 0.555976, -1.32973)
+surface_material_override/1 = ExtResource("2_7nnn7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 0, 0, 1, 8.74241, 5.37743, 0.0335693)
+shape = SubResource("BoxShape3D_042ax")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 0, 0, 1, 8.38397, 3.49709, -7.04725)
+shape = SubResource("BoxShape3D_w5f0m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06653, 0.960693, 0.00561523)
+shape = SubResource("BoxShape3D_pmn5s")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.970582, 0, 0.24077, 0, 1, 0, -0.24077, 0, 0.970582, -6.31971, 0.960693, 0.839782)
+shape = SubResource("BoxShape3D_fi7f7")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.970716, 0, -0.240228, 0, 1, 0, 0.240228, 0, 0.970716, -6.21124, 0.960693, -0.792978)
+shape = SubResource("BoxShape3D_fi7f7")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.71726, 1.5014, 0.0144653)
+shape = SubResource("BoxShape3D_ygq6a")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.984747, -0.173992, 0, 0.173992, 0.984747, 0, 0, 0, 1, -14.8673, 2.21255, 3.33179)
+shape = SubResource("BoxShape3D_b12ff")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.984747, -0.173992, 0, 0.173992, 0.984747, 0, 0, 0, 1, -15.009, 7.6858, -5.09253)
+shape = SubResource("CapsuleShape3D_6ctss")
+
+[editable path="Building2"]

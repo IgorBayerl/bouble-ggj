@@ -1,12 +1,29 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=39 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
 [ext_resource type="Script" path="res://src/components/camera/cameraFollow.gd" id="2_bgq1x"]
 [ext_resource type="PackedScene" uid="uid://ho4bhsbddnxo" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
+[ext_resource type="Texture2D" uid="uid://d0iyw0leu2235" path="res://assets/Textures/MissingTex.png" id="4_26jfq"]
 [ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_dyffd"]
 [ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_s203v"]
 [ext_resource type="PackedScene" uid="uid://bxq8ricmnmyf7" path="res://assets/Prefabs/building_1.tscn" id="7_pp32y"]
+[ext_resource type="PackedScene" uid="uid://b71uubqd8h2n2" path="res://assets/Prefabs/building_2.tscn" id="8_yibg6"]
+[ext_resource type="PackedScene" uid="uid://drdmtvq83e7ia" path="res://assets/Prefabs/building_3.tscn" id="9_6lns7"]
+[ext_resource type="PackedScene" uid="uid://clk6b1rr0gqmp" path="res://assets/Prefabs/building_4.tscn" id="10_4wnyc"]
+[ext_resource type="PackedScene" uid="uid://cisua5p7t42j7" path="res://assets/Prefabs/building_5.tscn" id="11_qhdgi"]
+[ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="12_1he8k"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="13_cxne2"]
+[ext_resource type="Resource" uid="uid://dtickawwk2c1u" path="res://src/items/vehicle.tres" id="14_4mytf"]
+[ext_resource type="Resource" uid="uid://vv7d7t8c31ti" path="res://src/items/crystal_gem.tres" id="14_jsh22"]
+[ext_resource type="Resource" uid="uid://n2njhsm5h4sl" path="res://src/items/trash_can.tres" id="15_58d62"]
+[ext_resource type="PackedScene" uid="uid://deev21xmgxd1s" path="res://src/components/extractor/extractor.tscn" id="16_aihww"]
+[ext_resource type="Resource" uid="uid://ckirb7xcw3cyw" path="res://src/items/crystal_bush.tres" id="16_lwe56"]
+[ext_resource type="Resource" uid="uid://bfljy5bvq5fdc" path="res://src/items/error.tres" id="17_cw1i0"]
+[ext_resource type="Resource" uid="uid://cmnhy752slhpm" path="res://src/items/pillar.tres" id="18_h36nc"]
+[ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="19_victx"]
+[ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
+[ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
 panorama = ExtResource("2_1v4xy")
@@ -22,10 +39,10 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4dro"]
-albedo_color = Color(0.368469, 0.276759, 0.0604874, 1)
+albedo_color = Color(0.268274, 0.503097, 0.517648, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mmwh"]
-albedo_color = Color(0.398185, 0.243231, 0.120903, 1)
+albedo_color = Color(0.619381, 0.541366, 0.523832, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m24g0"]
 albedo_color = Color(0.41598, 0.41598, 0.41598, 1)
@@ -34,12 +51,28 @@ albedo_color = Color(0.41598, 0.41598, 0.41598, 1)
 albedo_color = Color(0.309804, 0.964706, 0.117647, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6g2t"]
-albedo_color = Color(0.137102, 0.341023, 0.203685, 1)
+albedo_color = Color(0.342643, 0.321534, 0.343612, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6fmk"]
+albedo_texture = ExtResource("4_26jfq")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 10.1965
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x7mr"]
 render_priority = 0
 shader = ExtResource("5_s203v")
 shader_parameter/ColorParameter = Color(0.839574, 0.53082, 0.073509, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0lk3o"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0hki8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
 
 [node name="Game" type="Node3D"]
 
@@ -134,24 +167,450 @@ material = SubResource("StandardMaterial3D_h6geh")
 transform = Transform3D(0.971209, 0, 0, 0, 0.971209, 0, 0, 0, 0.971209, -4.60039, -3.03966, -3.32282)
 use_collision = true
 radius = 50.0
-radial_segments = 50
+radial_segments = 30
 rings = 25
 material = SubResource("StandardMaterial3D_n6g2t")
+
+[node name="CSGSphere3D9" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(0.313582, 0, 0, 0, 0.0890787, 0, 0, 0, 0.313582, 0, 45.6783, 0)
+use_collision = true
+radius = 50.0
+radial_segments = 15
+material = SubResource("StandardMaterial3D_n6g2t")
+
+[node name="CSGSphere3D10" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(-5.92222, -28.4368, 7.0122, 5.13484, -14.9378, -26.5154, 9.1021, -10.0753, 19.5208, -23.7969, 19.3428, 33.6824)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_h6geh")
+
+[node name="CSGSphere3D12" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1.93349, 0, 0, 0, 1.72932, 0.86477, 0, -0.86477, 1.72932, 51.8757, -26.0875, 25.2248)
+operation = 2
+radius = 10.0
+radial_segments = 25
+rings = 8
+material = SubResource("StandardMaterial3D_m24g0")
+
+[node name="CSGSphere3D13" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1.93349, 0, 0, 0, 1.72932, 0.86477, 0, -0.86477, 1.72932, 37.9601, -33.4873, 43.8036)
+operation = 2
+radius = 10.0
+radial_segments = 25
+rings = 8
+material = SubResource("StandardMaterial3D_m24g0")
+
+[node name="CSGSphere3D11" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(0.797808, 0, 0, 0, 0.797808, 0, 0, 0, 0.797808, -7.92552, -3.03966, -4.91434)
+use_collision = true
+radius = 50.0
+radial_segments = 30
+rings = 25
+material = SubResource("StandardMaterial3D_n6g2t")
+
+[node name="CSGSphere3D14" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(9.00806, -3.50232, -21.9927, 2.59259, 32.7217, 3.12983, 7.51133, -7.09391, 25.2948, -37.5458, -14.3917, -31.5695)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_x6fmk")
+
+[node name="CSGSphere3D15" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(5.05347, -0.223792, -30.5396, 2.59259, 32.7217, 3.12983, 10.5843, -7.9082, 13.8145, -27.3456, -14.3917, -39.9548)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_x6fmk")
 
 [node name="World" parent="." instance=ExtResource("3_4ycdo")]
 
 [node name="GravityField" parent="World" index="0"]
 gravity = 20.0
 
-[node name="Spaceship" parent="." instance=ExtResource("4_dyffd")]
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="ItemSpawner" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6477, 34.6532, 26.4913)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_4mytf")])
+
+[node name="ItemSpawner2" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6357, 40.7545, -10.6279)
+items = Array[ExtResource("13_cxne2")]([ExtResource("15_58d62")])
+
+[node name="ItemSpawner3" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.20221, 46.6703, 16.1031)
+items = Array[ExtResource("13_cxne2")]([ExtResource("16_lwe56")])
+
+[node name="ItemSpawner4" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.8467, 21.4053, -10.6279)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner5" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.9237, 21.4053, 10.4721)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+
+[node name="ItemSpawner6" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.3408, 19.9135, 21.5875)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner7" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.1602, 27.8561, 16.9931)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner8" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2923, 25.3007, 23.2159)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner9" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7065, 20.6244, -30.0663)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner10" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2747, 21.9028, -34.2845)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner11" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.844, 18.3105, -33.9309)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner12" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7078, 25.4876, -26.2366)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner13" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(0.999852, 0.0172255, 0, -0.0172255, 0.999852, 0, 0, 0, 1, 40.0786, 16.5321, -27.5913)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner14" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6943, -4.71173, -10.2044)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_4mytf")])
+
+[node name="ItemSpawner15" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.0526, 10.1035, 13.0157)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_jsh22")])
+
+[node name="ItemSpawner16" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2489, 19.419, 27.6672)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner17" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7311, 30.4194, 36.8475)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+
+[node name="ItemSpawner18" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8911, 27.7855, 36.4159)
+items = Array[ExtResource("13_cxne2")]([ExtResource("15_58d62")])
+
+[node name="ItemSpawner19" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8848, 27.3849, 38.7537)
+items = Array[ExtResource("13_cxne2")]([ExtResource("15_58d62")])
+
+[node name="ItemSpawner20" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6877, 19.419, 32.2385)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+
+[node name="ItemSpawner21" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.647, 10.1088, 42.9783)
+items = Array[ExtResource("13_cxne2")]([ExtResource("16_lwe56")])
+
+[node name="ItemSpawner22" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.328, -0.218997, -47.3943)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+randomize_rotation = true
+
+[node name="ItemSpawner23" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3239, 5.6343, -48.3429)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+randomize_rotation = true
+
+[node name="ItemSpawner24" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16868, 10.9534, -48.6134)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+randomize_rotation = true
+
+[node name="ItemSpawner25" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4518, 24.9182, -40.8739)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="ItemSpawner26" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0285844, 44.9566, -22.1671)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_jsh22")])
+randomize_rotation = true
+
+[node name="ItemSpawner27" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.4409, 32.8332, 3.62673)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_4mytf")])
+
+[node name="ItemSpawner28" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4204, 19.7635, 40.5777)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner29" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1395, 19.7635, 31.1243)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner30" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2102, 25.6198, 31.8818)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner31" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0725, 25.7589, 36.514)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner32" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1369, 14.4638, 39.9478)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner33" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3406, 13.805, 35.4187)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner34" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79867, 1.19663, 49.0861)
+items = Array[ExtResource("13_cxne2")]([ExtResource("15_58d62")])
+
+[node name="ItemSpawner35" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8485, -14.6548, 46.8899)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_4mytf")])
+
+[node name="ItemSpawner36" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.727, -5.4439, 42.8997)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+
+[node name="ItemSpawner37" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.5725, -4.2939, -29.3281)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner38" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.5524, -12.7871, -28.561)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner39" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5463, -12.7871, -44.003)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner40" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.231, -6.2379, -38.1371)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner41" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9554, -17.0855, -34.1683)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner42" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4169, -21.0401, -40.0871)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner43" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7959, -23.4689, -29.1393)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner44" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7546, -18.3207, -29.0556)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner45" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2097, -0.353041, 45.6029)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+
+[node name="ItemSpawner46" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.64798, -29.5397, 39.5269)
+items = Array[ExtResource("13_cxne2")]([ExtResource("16_lwe56")])
+
+[node name="ItemSpawner47" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8539, -29.5397, -22.8385)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+
+[node name="ItemSpawner48" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2999, -26.8716, -26.51)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_4mytf")])
+
+[node name="ItemSpawner49" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.11998, -3.07191, -51.288)
+items = Array[ExtResource("13_cxne2")]([ExtResource("16_lwe56")])
+randomize_rotation = true
+
+[node name="ItemSpawner50" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6322, -36.5222, -18.1851)
+items = Array[ExtResource("13_cxne2")]([ExtResource("18_h36nc")])
+
+[node name="ItemSpawner51" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4686, -50.5995, 8.22076)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+
+[node name="ItemSpawner52" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5537, -24.2761, -43.0494)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner53" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5537, -16.8958, -45.2123)
+items = Array[ExtResource("13_cxne2")]([ExtResource("17_cw1i0")])
+
+[node name="ItemSpawner54" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.776, -6.31073, 16.1272)
+items = Array[ExtResource("13_cxne2")]([ExtResource("19_victx")])
+
+[node name="ItemSpawner55" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.1797, -26.5705, -6.92522)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_jsh22")])
+
+[node name="ItemSpawner56" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9426, -29.0819, 25.5604)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_jsh22")])
+
+[node name="ItemSpawner57" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3002, -39.8755, 20.3108)
+items = Array[ExtResource("13_cxne2")]([ExtResource("14_jsh22")])
+
+[node name="ItemSpawner58" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24364, -34.3074, -40.2706)
+items = Array[ExtResource("13_cxne2")]([ExtResource("16_lwe56")])
+randomize_rotation = true
+
+[node name="ItemSpawner59" parent="Spawners" instance=ExtResource("12_1he8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.6589, 7.24992, -19.3745)
+items = Array[ExtResource("13_cxne2")]([ExtResource("20_mjsx2")])
+randomize_rotation = true
+
+[node name="Extractor" parent="." instance=ExtResource("16_aihww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.072, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Building8" parent="Environment" instance=ExtResource("10_4wnyc")]
+transform = Transform3D(-0.0430439, 0.0752222, 0.996237, 0.249439, -0.964773, 0.0836238, 0.967433, 0.2521, 0.0227643, -2.08569, -48.8801, 9.48946)
+
+[node name="Spaceship" parent="Environment" instance=ExtResource("4_dyffd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.8985, 0)
 
-[node name="Tracktorbeam" parent="Spaceship" index="3"]
+[node name="Tracktorbeam" parent="Environment/Spaceship" index="3"]
 transform = Transform3D(0.42947, 0, 0, 0, 0.663502, 0, 0, 0, 0.42947, 0, 6.22508, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_1x7mr")
 
-[node name="Building1" parent="." instance=ExtResource("7_pp32y")]
+[node name="Building1" parent="Environment" instance=ExtResource("7_pp32y")]
 transform = Transform3D(0.713943, 0.698007, 0.0554207, -0.683079, 0.711695, -0.163996, -0.153913, 0.0792269, 0.984903, 29.4073, 39.0351, 1.32625)
 
+[node name="building2" parent="Environment" instance=ExtResource("8_yibg6")]
+transform = Transform3D(0.956238, 0.292589, -1.14761e-08, -0.218033, 0.712575, -0.666858, -0.195115, 0.637675, 0.745185, 25.2404, 29.2986, 30.0614)
+
+[node name="building3" parent="Environment" instance=ExtResource("9_6lns7")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.10332, -51.5654, -3.08381)
+
+[node name="building4" parent="Environment" instance=ExtResource("9_6lns7")]
+transform = Transform3D(-0.819022, -0.573762, 0, 0.573762, -0.819022, 0, 0, 0, 1, -34.7297, -40.1221, -3.08381)
+
+[node name="building12" parent="Environment" instance=ExtResource("11_qhdgi")]
+transform = Transform3D(-0.865589, 0.500756, 0, -0.493673, -0.853346, -0.167595, -0.083924, -0.145068, 0.985856, 34.9684, -33.0528, -11.2098)
+
+[node name="building5" parent="Environment" instance=ExtResource("9_6lns7")]
+transform = Transform3D(-0.990031, 0.140849, 0, -0.140849, -0.990031, 0, 0, 0, 1, 4.6587, -51.5654, -3.08381)
+
+[node name="Building4" parent="Environment" instance=ExtResource("10_4wnyc")]
+transform = Transform3D(-0.952539, -0.304415, 0, 0.304415, -0.952539, 0, 0, 0, 1, -19.938, -48.5414, -3.03098)
+
+[node name="Building5" parent="Environment" instance=ExtResource("10_4wnyc")]
+transform = Transform3D(0.136753, 0.990605, 0, -0.990605, 0.136753, 0, 0, 0, 1, 47.3182, 9.36286, 12.8137)
+
+[node name="building6" parent="Environment" instance=ExtResource("11_qhdgi")]
+transform = Transform3D(0.941676, 0.335223, 0.0295169, -0.301184, 0.800423, 0.518277, 0.150112, -0.496939, 0.854703, 19.6054, 39.9355, -22.3423)
+
+[node name="building11" parent="Environment" instance=ExtResource("11_qhdgi")]
+transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -40.878, 27.4792, 3.39535)
+
+[node name="building7" parent="Environment" instance=ExtResource("8_yibg6")]
+transform = Transform3D(-0.894793, 0.429175, -0.123103, -0.0156318, 0.245436, 0.969287, 0.446207, 0.869236, -0.212906, 21.2937, 5.1409, 43.3268)
+
+[node name="building8" parent="Environment" instance=ExtResource("9_6lns7")]
+transform = Transform3D(0.986452, 0.162979, -0.0187074, -0.0388503, 0.34288, 0.938575, 0.159382, -0.925133, 0.344567, 4.23965, 17.5311, -46.4624)
+
+[node name="building9" parent="Environment" instance=ExtResource("9_6lns7")]
+transform = Transform3D(0.727002, 0.253466, -0.638141, 0.662435, -0.0143434, 0.748982, 0.180689, -0.967238, -0.178333, 19.853, -8.09319, -45.1868)
+
+[node name="Building2" parent="Environment" instance=ExtResource("7_pp32y")]
+transform = Transform3D(-0.132538, 0.88115, 0.453882, -0.988876, -0.148742, 0, 0.0675111, -0.448833, 0.891062, 42.7892, -10.4121, -20.98)
+
+[node name="Building3" parent="Environment" instance=ExtResource("7_pp32y")]
+transform = Transform3D(-0.189065, 0.8955, -0.402906, 0.980828, 0.191951, -0.0336271, 0.0472251, -0.40154, -0.914623, 43.4599, -0.266521, -20.98)
+
+[node name="building10" parent="Environment" instance=ExtResource("11_qhdgi")]
+transform = Transform3D(0.68595, -0.305762, -0.66029, 0.655666, 0.653245, 0.378647, 0.315555, -0.692662, 0.648571, -14.3275, 30.7027, -37.4863)
+
+[node name="Building6" parent="Environment" instance=ExtResource("10_4wnyc")]
+transform = Transform3D(0.724461, -0.671426, 0.156023, 0.689316, 0.705659, -0.163978, -7.45058e-09, 0.226345, 0.974047, -30.0604, 36.3595, 11.6995)
+
+[node name="Building7" parent="Environment" instance=ExtResource("10_4wnyc")]
+transform = Transform3D(0.724461, -0.689316, 0.000457153, 0.689316, 0.72446, -0.000480473, -7.25833e-09, 0.000663221, 1, -31.3299, 37.6938, -6.01908)
+
+[node name="building13" parent="Environment" instance=ExtResource("11_qhdgi")]
+transform = Transform3D(-0.865589, 0.500756, 0, -0.418016, -0.722568, -0.550597, -0.275715, -0.476591, 0.834771, 21.8007, -36.89, -25.3793)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 748.0
+offset_top = 266.0
+offset_right = 1262.0
+offset_bottom = 780.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65616e-08, 0, 327.006)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.5, -1.31134e-07, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1.5)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.31134e-07, -1.5)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
+physics_material_override = SubResource("PhysicsMaterial_0lk3o")
+gravity_scale = 0.0
+script = ExtResource("21_6kw36")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0hki8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+shape = SubResource("SphereShape3D_kja6f")
+
+[node name="Building1" parent="." instance=ExtResource("7_pp32y")]
+transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 0.32803, 0.938333, -0.109214, -18.1998, -4.08792, 45.1093)
+
+[node name="Building2" parent="." instance=ExtResource("7_pp32y")]
+transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
+
 [editable path="World"]
-[editable path="Spaceship"]
+[editable path="Environment/Spaceship"]

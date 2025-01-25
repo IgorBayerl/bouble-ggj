@@ -48,7 +48,7 @@ func align_with_planet(item: Node3D) -> void:
 	var current_basis = item.global_transform.basis
 	var current_forward = -current_basis.z
 	var tangent_forward = (current_forward - desired_up * current_forward.dot(desired_up)).normalized()
-	var tangent_right = desired_up.cross(tangent_forward).normalized()
+	var tangent_right = tangent_forward.cross(desired_up).normalized()
 	
 	# Apply the new rotation
 	item.global_transform.basis = Basis(tangent_right, desired_up, -tangent_forward).orthonormalized()

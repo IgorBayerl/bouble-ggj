@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://co0iyrow5l2y0"]
+[gd_scene load_steps=11 format=3 uid="uid://co0iyrow5l2y0"]
 
 [ext_resource type="Material" uid="uid://dya1qhl0cryq6" path="res://assets/Materials/Mat_Bubble.tres" id="1_wvm5d"]
 [ext_resource type="PackedScene" uid="uid://q006petydykx" path="res://assets/Models/Building4.blend" id="2_1n2cm"]
-[ext_resource type="PackedScene" uid="uid://cgtp328w1xs6q" path="res://assets/Models/Building5.blend" id="3_s7pli"]
 [ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_akfr3"]
 [ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_vjpjs"]
 
@@ -35,6 +34,7 @@ shader = ExtResource("5_vjpjs")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
 [node name="Triplanar Mapping" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0591393, 0, 0.075285)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cjgv")
@@ -64,9 +64,6 @@ transform = Transform3D(0.473081, 0, 0, 0, 0.473081, 0, 0, 0, 0.473081, 0, 0.359
 operation = 2
 radial_segments = 30
 rings = 30
-
-[node name="Building5" parent="." instance=ExtResource("3_s7pli")]
-transform = Transform3D(0.847667, 0.474784, 0.23673, -0.523311, 0.821633, 0.225975, -0.0872157, -0.315434, 0.944931, 10.5118, 19.6305, -4.60831)
 
 [node name="Spaceship" parent="." instance=ExtResource("4_akfr3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7799, 0, 0)

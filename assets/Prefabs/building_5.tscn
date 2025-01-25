@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cisua5p7t42j7"]
+
+[ext_resource type="PackedScene" uid="uid://dyrf06ljda3gj" path="res://assets/Models/Building6.blend" id="1_uch7p"]
+[ext_resource type="Script" path="res://src/components/floating/buildingPlacer.gd" id="1_yk3tm"]
+[ext_resource type="Material" uid="uid://wdji170sloo7" path="res://assets/Materials/Mat_GlowColor.tres" id="2_hqpvc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xfge"]
+size = Vector3(3.4281, 10.9388, 10.3645)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6xu6k"]
+size = Vector3(7.36862, 10.9388, 5.71661)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g04a4"]
+size = Vector3(10.9889, 5.42313, 11.31)
+
+[node name="building5" type="StaticBody3D"]
+script = ExtResource("1_yk3tm")
+
+[node name="Building6" parent="." instance=ExtResource("1_uch7p")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="Cube" parent="Building6" index="0"]
+surface_material_override/1 = ExtResource("2_hqpvc")
+
+[node name="Cylinder" parent="Building6" index="3"]
+material_override = ExtResource("2_hqpvc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0271606, 3.44843, -0.0167236)
+shape = SubResource("BoxShape3D_8xfge")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0264435, 3.44843, 0.0439148)
+shape = SubResource("BoxShape3D_6xu6k")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479622, 7.51396, 0.107658)
+shape = SubResource("BoxShape3D_g04a4")
+
+[editable path="Building6"]

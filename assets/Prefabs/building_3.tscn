@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://drdmtvq83e7ia"]
+
+[ext_resource type="Script" path="res://src/components/floating/buildingPlacer.gd" id="1_s7eta"]
+[ext_resource type="PackedScene" uid="uid://q006petydykx" path="res://assets/Models/Building4.blend" id="2_7ti6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_obkc6"]
+size = Vector3(8.09533, 8.82428, 8.11504)
+
+[node name="building3" type="StaticBody3D"]
+script = ExtResource("1_s7eta")
+
+[node name="Building4" parent="." instance=ExtResource("2_7ti6v")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00168991, 2.24228, 0.0287876)
+shape = SubResource("BoxShape3D_obkc6")

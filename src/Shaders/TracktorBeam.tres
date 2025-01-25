@@ -44,7 +44,7 @@ input_name = "time"
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, world_vertex_coords;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, world_vertex_coords;
 
 uniform vec4 ColorParameter : source_color = vec4(0.989610, 0.686795, 0.326881, 1.000000);
 uniform sampler2D tex_frg_12;
@@ -104,6 +104,7 @@ void fragment() {
 
 }
 "
+modes/cull = 2
 flags/unshaded = true
 flags/world_vertex_coords = true
 nodes/fragment/0/position = Vector2(280, 300)

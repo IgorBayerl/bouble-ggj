@@ -23,7 +23,7 @@ vec3 hsv2rgb( float h, float s, float v )
 }
 
 float random( vec2 pos )
-{ 
+{
 	return fract(sin(dot(pos, vec2(12.9898,78.233))) * 43758.5453);
 }
 
@@ -37,9 +37,9 @@ void fragment( )
 {
 	float outline_alpha = clamp( ( 1.0 - dot( NORMAL, VIEW ) ) * outline_ratio, 0.0, 1.0 );
 	float angle = clamp( ( 1.0 - dot( NORMAL, VIEW ) ), 0.0, 1.0 );
-	
-	
-	
+
+
+
 	if(angle >= 0.40 && angle <= 0.5 && NORMAL.y >= 0.2 &&  NORMAL.x <= -0.2)
 	{
 		ALBEDO = highlight_color.xyz;
