@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://cmnhy752slhpm"]
+
+[ext_resource type="PackedScene" uid="uid://c0x3f7yhc7mj1" path="res://assets/Models/Pillar.blend" id="1_13qbk"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="2_h8ywn"]
+
+[resource]
+script = ExtResource("2_h8ywn")
+item_name = "Pillar"
+value = -10
+item_scene = ExtResource("1_13qbk")

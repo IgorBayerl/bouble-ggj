@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://co0iyrow5l2y0"]
+
+[ext_resource type="Material" uid="uid://dya1qhl0cryq6" path="res://assets/Materials/Mat_Bubble.tres" id="1_wvm5d"]
+[ext_resource type="PackedScene" uid="uid://q006petydykx" path="res://assets/Models/Building4.blend" id="2_1n2cm"]
+[ext_resource type="PackedScene" uid="uid://cgtp328w1xs6q" path="res://assets/Models/Building5.blend" id="3_s7pli"]
+[ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_akfr3"]
+[ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_vjpjs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hok7h"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_feovg"]
+sky_material = SubResource("ProceduralSkyMaterial_hok7h")
+
+[sub_resource type="Environment" id="Environment_8cjgv"]
+background_mode = 1
+background_color = Color(0.336608, 0.336608, 0.336608, 1)
+sky = SubResource("Sky_feovg")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_qlyfa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvlty"]
+albedo_color = Color(1, 0, 1, 1)
+metallic = 0.46
+metallic_specular = 0.81
+roughness = 0.19
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1lmx"]
+render_priority = 0
+shader = ExtResource("5_vjpjs")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[node name="Triplanar Mapping" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8cjgv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.837232, -0.473584, 0.273423, 0.321521, 0.830753, 0.454395, -0.442341, -0.292523, 0.847799, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_wvm5d")
+mesh = SubResource("SphereMesh_qlyfa")
+
+[node name="Building4" parent="." instance=ExtResource("2_1n2cm")]
+transform = Transform3D(1.80947, 0, 0, 0, 1.80947, 0, 0, 0, 1.80947, 31.4237, 0.418895, -4.87212)
+
+[node name="Cube" parent="Building4" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hvlty")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(47.3596, 0, 0, 0, 47.3596, 0, 0, 0, 47.3596, 0, 0, 1.71571)
+use_collision = true
+radial_segments = 30
+rings = 30
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(0.473081, 0, 0, 0, 0.473081, 0, 0, 0, 0.473081, 0, 0.35948, 0.486038)
+operation = 2
+radial_segments = 30
+rings = 30
+
+[node name="Building5" parent="." instance=ExtResource("3_s7pli")]
+transform = Transform3D(0.847667, 0.474784, 0.23673, -0.523311, 0.821633, 0.225975, -0.0872157, -0.315434, 0.944931, 10.5118, 19.6305, -4.60831)
+
+[node name="Spaceship" parent="." instance=ExtResource("4_akfr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7799, 0, 0)
+
+[node name="Tracktorbeam" parent="Spaceship" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_d1lmx")
+
+[editable path="Building4"]
+[editable path="Spaceship"]

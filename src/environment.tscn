@@ -1,0 +1,157 @@
+[gd_scene load_steps=17 format=3 uid="uid://bmylravv6ol87"]
+
+[ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
+[ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
+[ext_resource type="Script" path="res://src/components/camera/cameraFollow.gd" id="2_bgq1x"]
+[ext_resource type="PackedScene" uid="uid://ho4bhsbddnxo" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
+[ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_dyffd"]
+[ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_s203v"]
+[ext_resource type="PackedScene" uid="uid://bxq8ricmnmyf7" path="res://assets/Prefabs/building_1.tscn" id="7_pp32y"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
+panorama = ExtResource("2_1v4xy")
+
+[sub_resource type="Sky" id="Sky_oxtur"]
+sky_material = SubResource("PanoramaSkyMaterial_pk5gm")
+
+[sub_resource type="Environment" id="Environment_wtcxj"]
+background_mode = 2
+background_energy_multiplier = 1.51
+sky = SubResource("Sky_oxtur")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4dro"]
+albedo_color = Color(0.368469, 0.276759, 0.0604874, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mmwh"]
+albedo_color = Color(0.398185, 0.243231, 0.120903, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m24g0"]
+albedo_color = Color(0.41598, 0.41598, 0.41598, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6geh"]
+albedo_color = Color(0.309804, 0.964706, 0.117647, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6g2t"]
+albedo_color = Color(0.137102, 0.341023, 0.203685, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x7mr"]
+render_priority = 0
+shader = ExtResource("5_s203v")
+shader_parameter/ColorParameter = Color(0.839574, 0.53082, 0.073509, 1)
+
+[node name="Game" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wtcxj")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.177399, 0.722907, -0.667783, -0.0394095, -0.672783, -0.738789, -0.98335, 0.157378, -0.0908617, 0, 0, 0)
+light_color = Color(0.898607, 0.495979, 0.999999, 1)
+light_energy = 0.9
+shadow_enabled = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.177399, -0.722907, 0.667783, -0.0394095, 0.672783, 0.738789, -0.98335, -0.157378, 0.0908617, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraBase" type="Node3D" parent="." node_paths=PackedStringArray("target", "lookTarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098, 51.5113, 12.396)
+script = ExtResource("2_bgq1x")
+target = NodePath("../NewPlayer/FollowPosition")
+lookTarget = NodePath("../NewPlayer")
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+fov = 70.0
+
+[node name="NewPlayer" parent="." instance=ExtResource("2_8e2dp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.3505, 0)
+
+[node name="FollowPosition" type="Node3D" parent="NewPlayer"]
+transform = Transform3D(1, 0, 0, 0, 0.931259, 0.364357, 0, -0.364357, 0.931259, 0, 8.15233, 12.348)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+use_collision = true
+radius = 50.0
+radial_segments = 50
+rings = 25
+material = SubResource("StandardMaterial3D_s4dro")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112672, 37.3759, -18.4687)
+radius = 10.0
+radial_segments = 50
+rings = 25
+material = SubResource("StandardMaterial3D_8mmwh")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1.34307, 0, 0, 0, 1.20125, 0.6007, 0, -0.6007, 1.20125, 0.0396438, 55.73, -27.8633)
+operation = 2
+radius = 10.0
+radial_segments = 25
+rings = 8
+material = SubResource("StandardMaterial3D_m24g0")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1.67165, -0.000170161, 0.000295415, 0.000335556, 1.07722, -1.27829, -6.0223e-05, 1.27829, 1.07722, 0.0121675, 20.9105, 26.9032)
+radius = 10.0
+radial_segments = 50
+rings = 25
+material = SubResource("StandardMaterial3D_8mmwh")
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1.34307, -0.000154848, -0.000158264, -1.38376e-05, 0.899324, -0.997522, 0.000220984, 0.997522, 0.899324, 0.0396438, 39.028, 48.2841)
+operation = 2
+radius = 10.0
+radial_segments = 25
+rings = 8
+material = SubResource("StandardMaterial3D_m24g0")
+
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(9.42895, -19.8116, -6.51914, 6.62421, 27.1386, -7.22097, 3.39149, 2.0731, 32.2282, 34.8656, 27.3439, 12.6309)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_h6geh")
+
+[node name="CSGSphere3D6" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(11.0813, -12.9773, 0.62885, 4.63378, 31.055, -0.484239, -0.140383, 0.689309, 33.6552, 43.0882, 16.9505, 0.682127)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_h6geh")
+
+[node name="CSGSphere3D7" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(9.86606, -12.9773, -14.1543, 3.99934, 31.055, -6.57687, 5.56361, 0.689309, 29.8278, 38.2652, 14.4652, 21.8526)
+radius = 0.41029
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_h6geh")
+
+[node name="CSGSphere3D8" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(0.971209, 0, 0, 0, 0.971209, 0, 0, 0, 0.971209, -4.60039, -3.03966, -3.32282)
+use_collision = true
+radius = 50.0
+radial_segments = 50
+rings = 25
+material = SubResource("StandardMaterial3D_n6g2t")
+
+[node name="World" parent="." instance=ExtResource("3_4ycdo")]
+
+[node name="GravityField" parent="World" index="0"]
+gravity = 20.0
+
+[node name="Spaceship" parent="." instance=ExtResource("4_dyffd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.8985, 0)
+
+[node name="Tracktorbeam" parent="Spaceship" index="3"]
+transform = Transform3D(0.42947, 0, 0, 0, 0.663502, 0, 0, 0, 0.42947, 0, 6.22508, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_1x7mr")
+
+[node name="Building1" parent="." instance=ExtResource("7_pp32y")]
+transform = Transform3D(0.713943, 0.698007, 0.0554207, -0.683079, 0.711695, -0.163996, -0.153913, 0.0792269, 0.984903, 29.4073, 39.0351, 1.32625)
+
+[editable path="World"]
+[editable path="Spaceship"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://rbu42pb2xucg"]
+
+[ext_resource type="PackedScene" uid="uid://bo6i21tcxa242" path="res://assets/Prefabs/gem.tscn" id="1_dg6ka"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="2_2rkxw"]
+
+[resource]
+script = ExtResource("2_2rkxw")
+item_name = "Gem"
+value = 10
+item_scene = ExtResource("1_dg6ka")

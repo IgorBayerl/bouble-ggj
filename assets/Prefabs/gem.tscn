@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo6i21tcxa242"]
+
+[ext_resource type="PackedScene" uid="uid://dkcmldbstord2" path="res://assets/Models/Gem.blend" id="1_tt4p8"]
+[ext_resource type="Script" path="res://src/components/rotateObject.gd" id="2_b20fo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fdh3"]
+transparency = 1
+albedo_color = Color(1, 0, 1, 0.466667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y5ts"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(1, 0, 1, 0.796078)
+
+[node name="Gem" type="Node3D"]
+
+[node name="Gem2" parent="." instance=ExtResource("1_tt4p8")]
+script = ExtResource("2_b20fo")
+
+[node name="Gem" parent="Gem2" index="0"]
+material_override = SubResource("StandardMaterial3D_5fdh3")
+
+[node name="GemInner" parent="Gem2" index="1"]
+material_override = SubResource("StandardMaterial3D_7y5ts")
+
+[editable path="Gem2"]

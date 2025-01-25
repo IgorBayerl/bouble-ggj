@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://dtickawwk2c1u"]
+
+[ext_resource type="PackedScene" uid="uid://bwbqil4e75gs" path="res://assets/Models/Car.blend" id="1_nyikc"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="2_dbr80"]
+
+[resource]
+script = ExtResource("2_dbr80")
+item_name = "vehicle"
+value = 10
+item_scene = ExtResource("1_nyikc")

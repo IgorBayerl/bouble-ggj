@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ho4bhsbddnxo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i0650"]
+radius = 200.0
+
+[node name="World" type="Node3D"]
+
+[node name="GravityField" type="Area3D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 1000.0
+
+[node name="GravityFieldCollision" type="CollisionShape3D" parent="GravityField"]
+shape = SubResource("SphereShape3D_i0650")

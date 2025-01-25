@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://bfljy5bvq5fdc"]
+
+[ext_resource type="PackedScene" uid="uid://dcf4jsejip3e8" path="res://assets/Models/Error.blend" id="1_sn53k"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="2_uuyko"]
+
+[resource]
+script = ExtResource("2_uuyko")
+item_name = "Error"
+value = -10
+item_scene = ExtResource("1_sn53k")

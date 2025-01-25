@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxq8ricmnmyf7"]
+
+[ext_resource type="PackedScene" uid="uid://copga0oa8ve5g" path="res://assets/Models/Building1.blend" id="1_h5jfo"]
+[ext_resource type="Script" path="res://src/components/floating/buildingPlacer.gd" id="1_qsahq"]
+[ext_resource type="Material" uid="uid://wdji170sloo7" path="res://assets/Materials/Mat_GlowColor.tres" id="2_y7ew8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2b7x"]
+size = Vector3(0.87258, 0.882202, 1.48792)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfplt"]
+size = Vector3(2.10571, 1.53412, 2.10571)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nqt2m"]
+size = Vector3(1.36867, 0.984161, 0.683972)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31f3x"]
+size = Vector3(1.11727, 0.882202, 0.836693)
+
+[node name="Building1" type="Node3D"]
+script = ExtResource("1_qsahq")
+
+[node name="Placer" type="Node3D" parent="."]
+transform = Transform3D(6.217, 0, 0, 0, 6.217, 0, 0, 0, 6.217, 0, 0, 0)
+
+[node name="Building1" parent="Placer" instance=ExtResource("1_h5jfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.156039, 0)
+
+[node name="Cube_002" parent="Placer/Building1" index="2"]
+surface_material_override/1 = ExtResource("2_y7ew8")
+
+[node name="Cube_004" parent="Placer/Building1" index="4"]
+surface_material_override/1 = ExtResource("2_y7ew8")
+
+[node name="Cube_005" parent="Placer/Building1" index="5"]
+surface_material_override/1 = ExtResource("2_y7ew8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Placer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placer/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000186417, 0.222656, 1.69101)
+shape = SubResource("BoxShape3D_m2b7x")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Placer/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0491943, 0.553131, 0.00134277)
+shape = SubResource("BoxShape3D_xfplt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Placer/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00412126, 0.304916, -1.17926)
+shape = SubResource("BoxShape3D_nqt2m")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Placer/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41325, 0.232117, -0.00771973)
+shape = SubResource("BoxShape3D_31f3x")
+
+[editable path="Placer/Building1"]
