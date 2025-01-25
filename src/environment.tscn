@@ -1,12 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=37 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
 [ext_resource type="Script" path="res://src/components/camera/cameraFollow.gd" id="2_bgq1x"]
-[ext_resource type="PackedScene" uid="uid://ho4bhsbddnxo" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
+[ext_resource type="PackedScene" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
 [ext_resource type="Texture2D" uid="uid://d0iyw0leu2235" path="res://assets/Textures/MissingTex.png" id="4_26jfq"]
-[ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_dyffd"]
-[ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_s203v"]
 [ext_resource type="PackedScene" uid="uid://bxq8ricmnmyf7" path="res://assets/Prefabs/building_1.tscn" id="7_pp32y"]
 [ext_resource type="PackedScene" uid="uid://b71uubqd8h2n2" path="res://assets/Prefabs/building_2.tscn" id="8_yibg6"]
 [ext_resource type="PackedScene" uid="uid://drdmtvq83e7ia" path="res://assets/Prefabs/building_3.tscn" id="9_6lns7"]
@@ -14,16 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://cisua5p7t42j7" path="res://assets/Prefabs/building_5.tscn" id="11_qhdgi"]
 [ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="12_1he8k"]
 [ext_resource type="Script" path="res://src/components/item/game_item.gd" id="13_cxne2"]
-[ext_resource type="Resource" uid="uid://dtickawwk2c1u" path="res://src/items/vehicle.tres" id="14_4mytf"]
-[ext_resource type="Resource" uid="uid://vv7d7t8c31ti" path="res://src/items/crystal_gem.tres" id="14_jsh22"]
+[ext_resource type="Resource" path="res://src/items/vehicle.tres" id="14_4mytf"]
+[ext_resource type="Resource" path="res://src/items/crystal_gem.tres" id="14_jsh22"]
 [ext_resource type="Resource" uid="uid://n2njhsm5h4sl" path="res://src/items/trash_can.tres" id="15_58d62"]
 [ext_resource type="PackedScene" uid="uid://deev21xmgxd1s" path="res://src/components/extractor/extractor.tscn" id="16_aihww"]
-[ext_resource type="Resource" uid="uid://ckirb7xcw3cyw" path="res://src/items/crystal_bush.tres" id="16_lwe56"]
-[ext_resource type="Resource" uid="uid://bfljy5bvq5fdc" path="res://src/items/error.tres" id="17_cw1i0"]
-[ext_resource type="Resource" uid="uid://cmnhy752slhpm" path="res://src/items/pillar.tres" id="18_h36nc"]
+[ext_resource type="Resource" path="res://src/items/crystal_bush.tres" id="16_lwe56"]
+[ext_resource type="Resource" path="res://src/items/error.tres" id="17_cw1i0"]
+[ext_resource type="Resource" path="res://src/items/pillar.tres" id="18_h36nc"]
 [ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="19_victx"]
 [ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
+[ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
 panorama = ExtResource("2_1v4xy")
@@ -57,11 +56,6 @@ albedo_color = Color(0.342643, 0.321534, 0.343612, 1)
 albedo_texture = ExtResource("4_26jfq")
 uv1_triplanar = true
 uv1_triplanar_sharpness = 10.1965
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x7mr"]
-render_priority = 0
-shader = ExtResource("5_s203v")
-shader_parameter/ColorParameter = Color(0.839574, 0.53082, 0.073509, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
 size = Vector3(3, 0.1, 3)
@@ -487,13 +481,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.072, 0)
 [node name="Building8" parent="Environment" instance=ExtResource("10_4wnyc")]
 transform = Transform3D(-0.0430439, 0.0752222, 0.996237, 0.249439, -0.964773, 0.0836238, 0.967433, 0.2521, 0.0227643, -2.08569, -48.8801, 9.48946)
 
-[node name="Spaceship" parent="Environment" instance=ExtResource("4_dyffd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.8985, 0)
-
-[node name="Tracktorbeam" parent="Environment/Spaceship" index="3"]
-transform = Transform3D(0.42947, 0, 0, 0, 0.663502, 0, 0, 0, 0.42947, 0, 6.22508, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_1x7mr")
-
 [node name="Building1" parent="Environment" instance=ExtResource("7_pp32y")]
 transform = Transform3D(0.713943, 0.698007, 0.0554207, -0.683079, 0.711695, -0.163996, -0.153913, 0.0792269, 0.984903, 29.4073, 39.0351, 1.32625)
 
@@ -612,5 +599,8 @@ transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 
 [node name="Building2" parent="." instance=ExtResource("7_pp32y")]
 transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_1rqhg")
+autoplay = true
+
 [editable path="World"]
-[editable path="Environment/Spaceship"]

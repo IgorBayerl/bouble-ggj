@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://deev21xmgxd1s"]
+[gd_scene load_steps=12 format=3 uid="uid://deev21xmgxd1s"]
 
 [ext_resource type="Script" path="res://src/components/extractor/extractor.gd" id="1_1c0ki"]
 [ext_resource type="AudioStream" uid="uid://s44lugkjk2tt" path="res://assets/Sound/aliens-tractorbeamloop.wav" id="1_74yjj"]
 [ext_resource type="AudioStream" uid="uid://d2slqm60l3i5c" path="res://assets/Sound/aliens-but-up.wav" id="2_4y77l"]
+[ext_resource type="PackedScene" uid="uid://cq57jjucnis7h" path="res://assets/Models/Spaceship.blend" id="4_mnxsf"]
+[ext_resource type="Shader" uid="uid://dk766er40p20n" path="res://src/Shaders/TracktorBeam.tres" id="5_554cc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8po8"]
 albedo_color = Color(0.887762, 0.557573, 0, 1)
@@ -25,6 +27,11 @@ _data = {
 "extract": SubResource("Animation_027fx")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pq7gt"]
+render_priority = 0
+shader = ExtResource("5_554cc")
+shader_parameter/ColorParameter = Color(0.839574, 0.53082, 0.073509, 1)
+
 [node name="Extractor" type="Node3D"]
 script = ExtResource("1_1c0ki")
 
@@ -43,6 +50,8 @@ doppler_tracking = 2
 [node name="AbsorbItemsSound" type="AudioStreamPlayer3D" parent="BaseMesh"]
 unique_name_in_owner = true
 stream = ExtResource("2_4y77l")
+volume_db = 10.0
+max_db = 6.0
 
 [node name="Area3D" type="Area3D" parent="." groups=["extractor"]]
 
@@ -55,4 +64,13 @@ libraries = {
 "": SubResource("AnimationLibrary_cg6h3")
 }
 
+[node name="Spaceship" parent="." instance=ExtResource("4_mnxsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85504, 0)
+
+[node name="Tracktorbeam" parent="Spaceship" index="3"]
+transform = Transform3D(0.42947, 0, 0, 0, 0.663502, 0, 0, 0, 0.42947, 0, 6.22508, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_pq7gt")
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+
+[editable path="Spaceship"]

@@ -8,7 +8,8 @@ extends Node3D
 var player: Node3D = null
 var is_absorbing: bool = false
 
-
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player_group"):
 		GameManager.items_extracted.emit()
+		absorb_items_sound.play()
+		animation_player.play("extract")
