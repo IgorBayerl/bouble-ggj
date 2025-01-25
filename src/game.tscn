@@ -1,8 +1,35 @@
-[gd_scene format=3 uid="uid://c06wp40dkre0d"]
+[gd_scene load_steps=6 format=3 uid="uid://c06wp40dkre0d"]
+
+[ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_rkqi8"]
+[ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_r267b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sdkkl"]
+sky_top_color = Color(0.64582, 0.647886, 0.790606, 1)
+sky_curve = 0.172305
+energy_multiplier = 6.89
+
+[sub_resource type="Sky" id="Sky_ijml8"]
+sky_material = SubResource("ProceduralSkyMaterial_sdkkl")
+
+[sub_resource type="Environment" id="Environment_acga3"]
+background_mode = 2
+sky = SubResource("Sky_ijml8")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 6.7
 
 [node name="Game" type="Node3D"]
 
-[node name="Planet" type="CSGSphere3D" parent="."]
-radius = 2.79586
-radial_segments = 30
-rings = 30
+[node name="World" parent="." instance=ExtResource("1_rkqi8")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_acga3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.204, 23.5005)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.161638, -0.384277, 0.908958, 1.02816e-07, 0.92107, 0.389398, -0.98685, 0.0629418, -0.14888, 68.7294, 31.7673, -4.03875)
+fov = 70.0
+
+[node name="NewPlayer" parent="." instance=ExtResource("2_r267b")]

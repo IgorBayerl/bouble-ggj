@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c06wp40dkre0d"]
+
+[ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_rkqi8"]
+[ext_resource type="PackedScene" uid="uid://brew5rd33nhyb" path="res://src/components/player/player.tscn" id="2_s1s2h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sdkkl"]
+sky_top_color = Color(0.64582, 0.647886, 0.790606, 1)
+sky_curve = 0.172305
+energy_multiplier = 6.89
+
+[sub_resource type="Sky" id="Sky_ijml8"]
+sky_material = SubResource("ProceduralSkyMaterial_sdkkl")
+
+[sub_resource type="Environment" id="Environment_acga3"]
+background_mode = 2
+sky = SubResource("Sky_ijml8")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 6.7
+
+[node name="Game" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1_rkqi8")]
+
+[node name="Player" parent="." instance=ExtResource("2_s1s2h")]
+transform = Transform3D(-0.175762, 0, -0.984433, 0, 1, 0, 0.984433, 0, -0.175762, 4.01297, -26.8993, -37.9604)
+mass = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-0.943078, 0.129503, -0.306323, 1.02816e-07, 0.92107, 0.389398, 0.332573, 0.367232, -0.86864, 22.0189, 58.6666, -69.6711)
+fov = 70.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_acga3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.204, 23.5005)

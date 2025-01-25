@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwwr18usd201h"]
+
+[ext_resource type="Texture2D" uid="uid://dojjv586gldbx" path="res://8k_earth_daymap.jpg" id="1_rvc1j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gib46"]
+bounce = 0.18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ywgk"]
+albedo_texture = ExtResource("1_rvc1j")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k077e"]
+radius = 30.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i0650"]
+radius = 200.0
+
+[node name="World" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_gib46")
+
+[node name="Planet" type="CSGSphere3D" parent="."]
+radius = 30.0
+radial_segments = 30
+rings = 30
+material = SubResource("StandardMaterial3D_7ywgk")
+
+[node name="WorldCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_k077e")
+
+[node name="GravityField" type="Area3D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 50.0
+
+[node name="GravityFieldCollision" type="CollisionShape3D" parent="GravityField"]
+shape = SubResource("SphereShape3D_i0650")

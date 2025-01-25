@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c06wp40dkre0d"]
+
+[ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_rkqi8"]
+[ext_resource type="PackedScene" uid="uid://brew5rd33nhyb" path="res://src/components/player/player.tscn" id="2_s1s2h"]
+
+[sub_resource type="Environment" id="Environment_gcfn7"]
+
+[node name="Game" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1_rkqi8")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("world") instance=ExtResource("2_s1s2h")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 13.7016, 0.776)
+planet_center = null
+gravity_strength = null
+move_speed = null
+turn_speed = null
+world = NodePath("../World")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-1, 6.78201e-08, -5.5165e-08, 0, 0.631014, 0.775771, 8.74228e-08, 0.775771, -0.631014, 1.3925e-06, 11.8753, -10.1721)
+fov = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gcfn7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.57845, 12.1778)
