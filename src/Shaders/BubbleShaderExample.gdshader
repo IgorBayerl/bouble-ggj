@@ -22,7 +22,7 @@ vec3 hsv2rgb( float h, float s, float v )
 }
 
 float random( vec2 pos )
-{ 
+{
 	return fract(sin(dot(pos, vec2(12.9898,78.233))) * 43758.5453);
 }
 

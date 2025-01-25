@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var rotation_accel: float = 5.0  # Rotation acceleration
 @export var rotation_decel: float = 8.0  # Rotation deceleration
 @export var max_rotation_speed: float = 2.0  # Max radians/second
+@onready var anim: AnimationPlayer = $"fish_walkAnim/AnimationPlayer"
 
 var current_rotation_velocity: float = 0.0
 
@@ -54,6 +55,8 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	anim.speed_scale = velocity.length() * 0.4
 	
 	move_and_slide()
 

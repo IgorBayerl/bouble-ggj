@@ -1,9 +1,9 @@
-[gd_scene load_steps=43 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=44 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
 [ext_resource type="Script" path="res://src/components/camera/cameraFollow.gd" id="2_bgq1x"]
-[ext_resource type="PackedScene" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
+[ext_resource type="PackedScene" uid="uid://ho4bhsbddnxo" path="res://src/components/world/gravityField.tscn" id="3_4ycdo"]
 [ext_resource type="Texture2D" uid="uid://d0iyw0leu2235" path="res://assets/Textures/MissingTex.png" id="4_26jfq"]
 [ext_resource type="PackedScene" uid="uid://bxq8ricmnmyf7" path="res://assets/Prefabs/building_1.tscn" id="7_pp32y"]
 [ext_resource type="PackedScene" uid="uid://b71uubqd8h2n2" path="res://assets/Prefabs/building_2.tscn" id="8_yibg6"]
@@ -12,18 +12,20 @@
 [ext_resource type="PackedScene" uid="uid://cisua5p7t42j7" path="res://assets/Prefabs/building_5.tscn" id="11_qhdgi"]
 [ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="12_1he8k"]
 [ext_resource type="Script" path="res://src/components/item/game_item.gd" id="13_cxne2"]
-[ext_resource type="Resource" path="res://src/items/vehicle.tres" id="14_4mytf"]
-[ext_resource type="Resource" path="res://src/items/crystal_gem.tres" id="14_jsh22"]
+[ext_resource type="Resource" uid="uid://dtickawwk2c1u" path="res://src/items/vehicle.tres" id="14_4mytf"]
+[ext_resource type="Resource" uid="uid://vv7d7t8c31ti" path="res://src/items/crystal_gem.tres" id="14_jsh22"]
 [ext_resource type="Resource" uid="uid://n2njhsm5h4sl" path="res://src/items/trash_can.tres" id="15_58d62"]
 [ext_resource type="PackedScene" uid="uid://deev21xmgxd1s" path="res://src/components/extractor/extractor.tscn" id="16_aihww"]
-[ext_resource type="Resource" path="res://src/items/crystal_bush.tres" id="16_lwe56"]
-[ext_resource type="Resource" path="res://src/items/error.tres" id="17_cw1i0"]
-[ext_resource type="Resource" path="res://src/items/pillar.tres" id="18_h36nc"]
+[ext_resource type="Resource" uid="uid://ckirb7xcw3cyw" path="res://src/items/crystal_bush.tres" id="16_lwe56"]
+[ext_resource type="Resource" uid="uid://bfljy5bvq5fdc" path="res://src/items/error.tres" id="17_cw1i0"]
+[ext_resource type="Resource" uid="uid://cmnhy752slhpm" path="res://src/items/pillar.tres" id="18_h36nc"]
 [ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="19_victx"]
 [ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
+[ext_resource type="ArrayMesh" uid="uid://dfnds672bd05o" path="res://assets/Models/Character/Bowl.res" id="22_diu10"]
 [ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
 [ext_resource type="Script" path="res://src/control.gd" id="24_7slg2"]
+[ext_resource type="ArrayMesh" uid="uid://bt3ckq8nkq2dt" path="res://assets/Models/Character/Fish.res" id="24_jusxr"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
 [ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
 
@@ -61,13 +63,11 @@ uv1_triplanar = true
 uv1_triplanar_sharpness = 10.1965
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
-size = Vector3(3, 0.1, 3)
+size = Vector3(2, 0.1, 2)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0lk3o"]
 friction = 0.0
 bounce = 0.5
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0hki8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
 
@@ -574,31 +574,36 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65616e-08, 0, 327.006)
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -2.79421, 330.384)
+cast_shadow = 0
+mesh = ExtResource("22_diu10")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 0, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.5, -1.31134e-07, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.31134e-07, -1.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 shape = SubResource("BoxShape3D_mspdx")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="SubViewportContainer/SubViewport"]
@@ -608,8 +613,8 @@ gravity_scale = 0.0
 script = ExtResource("21_6kw36")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_0hki8")
+transform = Transform3D(-1, -4.37114e-08, 2.98023e-08, -4.37114e-08, 1, 4.37114e-08, -2.98023e-08, 4.37114e-08, -1, 0, -1.8353, 0.0675354)
+mesh = ExtResource("24_jusxr")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]

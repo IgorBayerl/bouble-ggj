@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://wsicecgxtrqn"]
+[gd_scene load_steps=11 format=3 uid="uid://wsicecgxtrqn"]
 
 [ext_resource type="Script" path="res://src/components/player/player.gd" id="1_xcivy"]
 [ext_resource type="Texture2D" uid="uid://d1kclgp1cbfw8" path="res://assets/icon.svg" id="2_yo7nk"]
 [ext_resource type="Shader" path="res://src/Shaders/BubbleShader.gdshader" id="3_vo35h"]
+[ext_resource type="PackedScene" uid="uid://kl02vnsb811b" path="res://assets/Models/Character/fish_walkAnim.glb" id="4_6y0qi"]
+[ext_resource type="Script" path="res://src/components/rotateObject.gd" id="4_phkib"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkmc0"]
 albedo_texture = ExtResource("2_yo7nk")
@@ -24,11 +26,16 @@ shader_parameter/highlight_color = Color(0, 0, 1, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_156be"]
 material = SubResource("ShaderMaterial_sik15")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byldm"]
+shading_mode = 0
+albedo_color = Color(0.939173, 0.479397, 0, 1)
+
 [node name="NewPlayer" type="CharacterBody3D" groups=["player_group"]]
 script = ExtResource("1_xcivy")
 
 [node name="Bouble" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.42661)
+visible = false
 radius = 1.0
 radial_segments = 15
 rings = 10
@@ -53,3 +60,38 @@ shape = SubResource("SphereShape3D_jsaxi")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.01903, 0)
 mesh = SubResource("SphereMesh_156be")
+script = ExtResource("4_phkib")
+
+[node name="fish_walkAnim" parent="." instance=ExtResource("4_6y0qi")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, -1.33666, 3.10167)
+
+[node name="Skeleton3D" parent="fish_walkAnim/Armature" index="0"]
+bones/0/position = Vector3(9.16684e-10, -0.455084, -0.108171)
+bones/0/rotation = Quaternion(0.07309, -1.19204e-07, -9.07573e-09, 0.997325)
+bones/1/rotation = Quaternion(0.0516025, 1.20799e-07, -4.28672e-09, 0.998668)
+bones/2/rotation = Quaternion(2.60863e-07, 2.63005e-07, -0.709746, 0.704457)
+bones/3/rotation = Quaternion(0.555699, -0.126892, -0.0329626, 0.820982)
+bones/4/rotation = Quaternion(0.235275, 0.11574, -0.0200319, 0.964805)
+bones/4/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.504499, 0.180055, 0.0944758, 0.839128)
+bones/7/rotation = Quaternion(0.280349, -0.118065, 0.00681002, 0.952585)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.110044, -1.29929e-09, -1.62279e-09, 0.993927)
+bones/9/position = Vector3(2.77933e-09, -0.455084, -0.108171)
+bones/9/rotation = Quaternion(0.511753, 0.487964, 0.511753, -0.487964)
+bones/10/rotation = Quaternion(-0.657272, -0.241922, -0.262554, 0.663727)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.0135018, -5.31112e-05, 0.0316145, 0.999409)
+bones/12/position = Vector3(-9.45965e-10, -0.455084, -0.108171)
+bones/12/rotation = Quaternion(0.511753, -0.487964, -0.511753, -0.487964)
+bones/13/rotation = Quaternion(-0.680616, -0.170218, -0.186194, 0.687837)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.0116506, 0.0122383, -0.537754, 0.842933)
+
+[node name="head_antenna" parent="fish_walkAnim/Armature/Skeleton3D" index="1"]
+surface_material_override/3 = SubResource("StandardMaterial3D_byldm")
+
+[node name="AnimationPlayer" parent="fish_walkAnim" index="1"]
+autoplay = "ArmatureAction"
+
+[editable path="fish_walkAnim"]
