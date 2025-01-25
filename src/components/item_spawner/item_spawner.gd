@@ -35,7 +35,6 @@ func spawn_random_item():
 		var floating_instance = Floating.new()
 		new_item_instance.add_child(floating_instance)
 		floating_instance.owner = new_item_instance  # Ensures it saves in the scene
-		print("Floating behavior added to:", selected_item.item_name)
 		
 		print("Spawned item:", selected_item.item_name)
 	else:

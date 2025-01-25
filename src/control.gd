@@ -2,22 +2,16 @@ extends Control
 
 # Reference to the VBoxContainer node
 @export var vbox_container: VBoxContainer
-@export var add_item_button: Button
-var rng = RandomNumberGenerator.new()
 
 func _ready():
 	# Assuming GameManager is a singleton or globally accessible
-	add_item_button.pressed.connect(add_item_to_collected)
 	if GameManager:
 		update_collected_items()
+	GameManager.item_collected.connect(add_item_to_collected)
 		
 # Function to add an item to the GameManager.items_collected array
-func add_item_to_collected():
+func add_item_to_collected(new_item: GameItem):
 	print("Add Item")
-	var new_item = GameItem.new()
-	new_item.item_name = "Item Name something :" + str(rng.randf_range(-10.0, 10.0))
-	new_item.value = int(rng.randf_range(1, 100))
-	
 	if GameManager:
 		GameManager.items_collected.append(new_item)
 		update_collected_items()  # Update the UI to reflect the new item
