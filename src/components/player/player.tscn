@@ -31,3 +31,5 @@ shape = SubResource("SphereShape3D_jsaxi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_jsaxi")
+
+[node name="Remove" type="Node3D" parent="."]
