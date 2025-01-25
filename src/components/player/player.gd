@@ -42,5 +42,6 @@ func align_with_planet(desired_up: Vector3) -> void:
 	var current_basis = global_transform.basis
 	var current_forward = -current_basis.z
 	var tangent_forward = (current_forward - desired_up * current_forward.dot(desired_up)).normalized()
-	var tangent_right = desired_up.cross(tangent_forward).normalized()
+	# Corrected cross product order to get proper right vector
+	var tangent_right = tangent_forward.cross(desired_up).normalized()
 	global_transform.basis = Basis(tangent_right, desired_up, -tangent_forward).orthonormalized()

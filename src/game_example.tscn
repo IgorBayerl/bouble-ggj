@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c06wp40dkre0d"]
+[gd_scene load_steps=11 format=3 uid="uid://c06wp40dkre0d"]
 
 [ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_ki8pc"]
 [ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="2_808sx"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="3_am13w"]
+[ext_resource type="Script" path="res://src/components/item/game_item.gd" id="3_mkiv1"]
+[ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="4_4hy0f"]
 [ext_resource type="Script" path="res://src/control.gd" id="4_8u18y"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="5_i627y"]
 
@@ -42,6 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6072, 28.076, -12.0018)
 
 [node name="ItemSpawner6" parent="World" instance=ExtResource("2_808sx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2486, 28.076, -3.03259)
+items = Array[ExtResource("3_mkiv1")]([ExtResource("4_4hy0f")])
 
 [node name="ItemSpawner7" parent="World" instance=ExtResource("2_808sx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61326, -27.7886, -9.1863)

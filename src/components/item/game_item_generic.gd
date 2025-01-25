@@ -1,7 +1,7 @@
 class_name GameItemGeneric extends Node3D
 
 @onready var placeholder_mesh: MeshInstance3D = $MeshInstance3D
-var item_data: GameItem = null
+@export var item_data: GameItem = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
