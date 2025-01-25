@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://wsicecgxtrqn"]
+[gd_scene load_steps=8 format=3 uid="uid://wsicecgxtrqn"]
 
 [ext_resource type="Script" path="res://src/components/player/player.gd" id="1_xcivy"]
 [ext_resource type="Texture2D" uid="uid://d1kclgp1cbfw8" path="res://assets/icon.svg" id="2_yo7nk"]
+[ext_resource type="Shader" path="res://src/Shaders/BubbleShader.gdshader" id="3_vo35h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkmc0"]
 albedo_texture = ExtResource("2_yo7nk")
@@ -9,10 +10,25 @@ albedo_texture = ExtResource("2_yo7nk")
 [sub_resource type="SphereShape3D" id="SphereShape3D_jsaxi"]
 radius = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sik15"]
+render_priority = 0
+shader = ExtResource("3_vo35h")
+shader_parameter/fuwafuwa_speed = 4.0
+shader_parameter/fuwafuwa_size = 0.06
+shader_parameter/outline_color = Color(0.45, 0.7, 1, 1)
+shader_parameter/outline_ratio = 1.0
+shader_parameter/noise_speed = 0.2
+shader_parameter/noise_scale = 0.5
+shader_parameter/highlight_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_156be"]
+material = SubResource("ShaderMaterial_sik15")
+
 [node name="NewPlayer" type="CharacterBody3D" groups=["player_group"]]
 script = ExtResource("1_xcivy")
 
 [node name="Bouble" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.42661)
 radius = 1.0
 radial_segments = 15
 rings = 10
@@ -33,3 +49,7 @@ shape = SubResource("SphereShape3D_jsaxi")
 shape = SubResource("SphereShape3D_jsaxi")
 
 [node name="Remove" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.01903, 0)
+mesh = SubResource("SphereMesh_156be")

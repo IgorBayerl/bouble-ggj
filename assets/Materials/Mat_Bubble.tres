@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dya1qhl0cryq6"]
+
+[ext_resource type="Shader" path="res://src/Shaders/BubbleShader.gdshader" id="1_fw62v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fw62v")
+shader_parameter/fuwafuwa_speed = 10.0
+shader_parameter/fuwafuwa_size = 0.05
+shader_parameter/outline_color = Color(0.45, 0.7, 1, 1)
+shader_parameter/outline_ratio = 0.25
+shader_parameter/noise_speed = 0.0
+shader_parameter/noise_scale = 0.0
+shader_parameter/highlight_color = Color(0.896822, 0.931684, 1, 1)
