@@ -14,4 +14,6 @@ func _ready() -> void:
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player_group"):
 		GameManager.item_collected.emit(item_data)
+		$AudioStreamPlayer3D.play_sound()
+		await get_tree().create_timer(0.2).timeout
 		queue_free()

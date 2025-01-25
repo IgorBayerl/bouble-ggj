@@ -11,4 +11,4 @@ func _ready() -> void:
 	
 
 func handle_item_collected(game_item: GameItem) -> void:
-	print(game_item)
+	print(game_item.item_name)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c06wp40dkre0d"]
+[gd_scene load_steps=12 format=3 uid="uid://c06wp40dkre0d"]
 
 [ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_ki8pc"]
 [ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="2_808sx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="4_4hy0f"]
 [ext_resource type="Script" path="res://src/control.gd" id="4_8u18y"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="5_i627y"]
+[ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="8_86et8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sdkkl"]
 sky_top_color = Color(0.64582, 0.647886, 0.790606, 1)
@@ -28,10 +29,34 @@ ambient_light_energy = 6.7
 [node name="World" parent="." instance=ExtResource("1_ki8pc")]
 
 [node name="ItemSpawner" parent="World" instance=ExtResource("2_808sx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28073, 29.5079, -7.93823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163546, 30.116, -6.177)
 
 [node name="ItemSpawner2" parent="World" instance=ExtResource("2_808sx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 29.0156, -9.17208)
+
+[node name="ItemSpawner12" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 28.3985, -11.3091)
+
+[node name="ItemSpawner13" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 27.5848, -13.7544)
+
+[node name="ItemSpawner14" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 26.3356, -16.3971)
+
+[node name="ItemSpawner15" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 25.1143, -18.5022)
+
+[node name="ItemSpawner16" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 23.4268, -20.6438)
+
+[node name="ItemSpawner17" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 21.4409, -22.7725)
+
+[node name="ItemSpawner18" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 19.142, -24.9099)
+
+[node name="ItemSpawner19" parent="World" instance=ExtResource("2_808sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 16.936, -26.4177)
 
 [node name="ItemSpawner3" parent="World" instance=ExtResource("2_808sx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.85245, 29.1193, -6.31032)
@@ -97,3 +122,7 @@ layout_mode = 2
 [node name="ItemUi" parent="Control/VBoxContainer2/VBoxContainer" instance=ExtResource("5_i627y")]
 layout_mode = 2
 text = "ItemName1"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_86et8")
+autoplay = true

@@ -11,7 +11,6 @@ func _ready():
 		
 # Function to add an item to the GameManager.items_collected array
 func add_item_to_collected(new_item: GameItem):
-	print("Add Item")
 	if GameManager:
 		GameManager.items_collected.append(new_item)
 		update_collected_items()  # Update the UI to reflect the new item
