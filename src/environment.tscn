@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=43 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
@@ -23,6 +23,9 @@
 [ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
 [ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
+[ext_resource type="Script" path="res://src/control.gd" id="24_7slg2"]
+[ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
+[ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
 panorama = ExtResource("2_1v4xy")
@@ -67,6 +70,25 @@ bounce = 0.5
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0hki8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yvg4l"]
+noise_type = 5
+frequency = 0.5
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mxqw"]
+noise = SubResource("FastNoiseLite_yvg4l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ht51f"]
+shader = ExtResource("26_tg3mm")
+shader_parameter/line_color = Color(1, 1, 1, 0.184314)
+shader_parameter/line_count = 0.95
+shader_parameter/line_density = 0.178
+shader_parameter/line_faloff = 0.106
+shader_parameter/mask_size = 0.186
+shader_parameter/mask_edge = 0.592
+shader_parameter/animation_speed = 20.0
+shader_parameter/noise = SubResource("NoiseTexture2D_5mxqw")
 
 [node name="Game" type="Node3D"]
 
@@ -602,5 +624,42 @@ transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_1rqhg")
 autoplay = true
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("vbox_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7slg2")
+vbox_container = NodePath("VBoxContainer2/VBoxContainer")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointCount" type="Label" parent="Control/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ItemUi" parent="Control/VBoxContainer2/VBoxContainer" instance=ExtResource("25_fmn34")]
+layout_mode = 2
+text = "ItemName1"
+
+[node name="SpeedLines" type="ColorRect" parent="Control"]
+visible = false
+material = SubResource("ShaderMaterial_ht51f")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [editable path="World"]

@@ -31,7 +31,7 @@ noise_type = 5
 frequency = 0.5
 fractal_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mxqw"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jctsu"]
 noise = SubResource("FastNoiseLite_gr2ah")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k4pye"]
@@ -43,7 +43,7 @@ shader_parameter/line_faloff = 0.106
 shader_parameter/mask_size = 0.186
 shader_parameter/mask_edge = 0.592
 shader_parameter/animation_speed = 20.0
-shader_parameter/noise = SubResource("NoiseTexture2D_5mxqw")
+shader_parameter/noise = SubResource("NoiseTexture2D_jctsu")
 
 [node name="Game" type="Node3D"]
 
