@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwbwsbloass86"]
+
+[ext_resource type="Script" path="res://src/components/item_spawner/item_spawner.gd" id="1_y166k"]
+[ext_resource type="Script" path="res://src/components/item/item.gd" id="2_50rc5"]
+[ext_resource type="Resource" uid="uid://n2njhsm5h4sl" path="res://src/items/trash_can.tres" id="3_aa7gt"]
+[ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="4_kc1o5"]
+
+[sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_0crob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b84mm"]
+next_pass = SubResource("PlaceholderMaterial_0crob")
+albedo_color = Color(0.956863, 0, 0.298039, 1)
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_y166k")
+items = Array[ExtResource("2_50rc5")]([ExtResource("3_aa7gt"), ExtResource("4_kc1o5")])
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material = SubResource("StandardMaterial3D_b84mm")

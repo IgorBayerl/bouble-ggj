@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c06wp40dkre0d"]
+[gd_scene load_steps=10 format=3 uid="uid://c06wp40dkre0d"]
 
+[ext_resource type="PackedScene" uid="uid://cwbwsbloass86" path="res://src/components/item_spawner/item_spawner.tscn" id="1_nwftp"]
 [ext_resource type="PackedScene" uid="uid://dwwr18usd201h" path="res://src/components/world/world.tscn" id="1_rkqi8"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_r267b"]
+[ext_resource type="Script" path="res://src/control.gd" id="3_316cy"]
+[ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="4_moi56"]
+[ext_resource type="PackedScene" uid="uid://b5xkqpo8ivq4u" path="res://assets/Models/Trashcan.blend" id="6_8gn0t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sdkkl"]
 sky_top_color = Color(0.64582, 0.647886, 0.790606, 1)
@@ -22,6 +26,36 @@ ambient_light_energy = 6.7
 
 [node name="World" parent="." instance=ExtResource("1_rkqi8")]
 
+[node name="Trashcan" parent="World" instance=ExtResource("6_8gn0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64592, 29.564, -3.56083)
+
+[node name="ItemSpawner" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28073, 29.5079, -7.93823)
+
+[node name="ItemSpawner2" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146196, 29.0156, -9.17208)
+
+[node name="ItemSpawner3" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.85245, 29.1193, -6.31032)
+
+[node name="ItemSpawner4" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61326, 28.076, -9.1863)
+
+[node name="ItemSpawner5" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6072, 28.076, -12.0018)
+
+[node name="ItemSpawner6" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2486, 28.076, -3.03259)
+
+[node name="ItemSpawner7" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61326, -27.7886, -9.1863)
+
+[node name="ItemSpawner8" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6072, -27.7886, -12.0018)
+
+[node name="ItemSpawner9" parent="World" instance=ExtResource("1_nwftp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2486, -27.7886, -3.03259)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_acga3")
 
@@ -34,3 +68,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.8387, 0)
 [node name="Camera3D" type="Camera3D" parent="NewPlayer"]
 transform = Transform3D(1, 0, 0, 0, 0.609564, 0.792737, 0, -0.792737, 0.609564, 0, 13.7584, 4.62685)
 fov = 70.0
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("vbox_container", "add_item_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_316cy")
+vbox_container = NodePath("VBoxContainer2/VBoxContainer")
+add_item_button = NodePath("VBoxContainer2/Button")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control/VBoxContainer2"]
+layout_mode = 2
+text = "AddItem"
+
+[node name="Items" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
+text = "Items"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ItemUi" parent="Control/VBoxContainer2/VBoxContainer" instance=ExtResource("4_moi56")]
+layout_mode = 2
+text = "ItemName1"

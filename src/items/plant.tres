@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://teqmbgdh5kxr"]
+
+[ext_resource type="PackedScene" uid="uid://c0t075ts6hfs7" path="res://assets/Models/Plant.blend" id="1_c8lrg"]
+[ext_resource type="Script" path="res://src/components/item/item.gd" id="1_me5m4"]
+
+[resource]
+script = ExtResource("1_me5m4")
+item_name = "plant"
+value = 5
+item_scene = ExtResource("1_c8lrg")

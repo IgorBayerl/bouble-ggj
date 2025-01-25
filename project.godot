@@ -15,6 +15,10 @@ run/main_scene="res://src/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+GameManager="*res://src/game_manager.gd"
+
 [dotnet]
 
 project/assembly_name="blouble-ggj"
@@ -52,4 +56,5 @@ turn_left={
 
 [physics]
 
+3d/physics_engine="JoltPhysics3D"
 2d/default_gravity=0.0
