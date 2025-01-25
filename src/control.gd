@@ -2,30 +2,25 @@ extends Control
 
 # Reference to the VBoxContainer node
 @export var vbox_container: VBoxContainer
+@onready var point_count: Label = %PointCount
 
 func _ready():
-	# Assuming GameManager is a singleton or globally accessible
+	# Ensure GameManager exists before connecting
 	if GameManager:
 		update_collected_items()
-	GameManager.item_collected.connect(add_item_to_collected)
-		
-# Function to add an item to the GameManager.items_collected array
-func add_item_to_collected(new_item: GameItem):
-	if GameManager:
-		GameManager.items_collected.append(new_item)
-		update_collected_items()  # Update the UI to reflect the new item
+		GameManager.items_changed.connect(update_collected_items)
 
 func update_collected_items():
-	# Clear existing labels (optional, depending on your use case)
+	point_count.text = str(GameManager.points)
+	# Clear existing labels
 	for child in vbox_container.get_children():
 		child.queue_free()
 
-	# Iterate through the collected items and add labels
-	for item in GameManager.items_collected:
+	# Get the last 3 items (if less than 3, take available items)
+	var last_items = GameManager.items_collected.slice(-3, GameManager.items_collected.size())
+
+	# Iterate through the last collected items and add labels
+	for item in last_items:
 		var label = Label.new()
 		label.text = item.item_name
 		vbox_container.add_child(label)
-
-# Call this function whenever you want to update the displayed items
-func on_item_collected():
-	update_collected_items()

@@ -1,7 +1,7 @@
 extends AudioStreamPlayer3D
 
 # Base settings
-const BASE_VOLUME_DB: float = 2  # Adjust main volume here
+const BASE_VOLUME_DB: float = 5  # Adjust main volume here
 const PITCH_DEVIATION: float = 0.7  # Deviation range (e.g., ±0.7 from 1.0)
 const VOLUME_DEVIATION: float = 1 # Deviation in dB (e.g., ±3 dB)
 

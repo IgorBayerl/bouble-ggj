@@ -8,7 +8,7 @@
 albedo_texture = ExtResource("2_yo7nk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jsaxi"]
-radius = 2.1
+radius = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sik15"]
 render_priority = 0
@@ -41,9 +41,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95108, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0129602, 0.665713)
 
 [node name="Area3D" type="Area3D" parent="." groups=["player_group"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_jsaxi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
