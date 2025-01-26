@@ -20,3 +20,7 @@ func _on_button_pressed() -> void:
 	menu.hide()
 	speed_lines.hide()
 	timer.start()
+
+
+func _on_play_again_pressed() -> void:
+	get_tree().reload_current_scene()

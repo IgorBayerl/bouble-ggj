@@ -1016,7 +1016,6 @@ text = "Collect items and bring to the spaceship"
 
 [node name="GameOver" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1050,29 +1049,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -109.0
-offset_top = -45.0
-offset_right = -2.0
-offset_bottom = 8.0
+offset_left = -107.0
+offset_top = -52.0
+offset_right = 59.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.06, 2.06)
 
 [node name="Points" type="Label" parent="GameOver/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "aaaa"
 
 [node name="ItemsNotDelivered" type="Label" parent="GameOver/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Not Delivered
 "
 
 [node name="ItemsLeftInTheMapLabel" type="Label" parent="GameOver/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Items Left
+"
+
+[node name="PlayAgain" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 441.0
+offset_top = 462.0
+offset_right = 693.0
+offset_bottom = 513.0
+text = "Play Again
 "
 
 [node name="MenuAnimations" type="AnimationPlayer" parent="."]
@@ -1087,6 +1097,7 @@ wait_time = 60.0
 script = ExtResource("33_bnchl")
 
 [connection signal="pressed" from="UI/Menu/Button" to="MenuAnimations" method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/PlayAgain" to="MenuAnimations" method="_on_play_again_pressed"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
 
 [editable path="World"]
