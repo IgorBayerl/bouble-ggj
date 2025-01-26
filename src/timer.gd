@@ -8,3 +8,4 @@ func _ready() -> void:
 func _on_timeout() -> void:
 	GameManager.input_enabled = false
 	game_over.show()
+	%Control2.hide()
