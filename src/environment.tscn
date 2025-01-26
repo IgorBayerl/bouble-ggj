@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=55 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="19_victx"]
 [ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
+[ext_resource type="PackedScene" uid="uid://cdw3cr8lulcwh" path="res://assets/Models/Bench.blend" id="22_1sij0"]
 [ext_resource type="ArrayMesh" uid="uid://dfnds672bd05o" path="res://assets/Models/Character/Bowl.res" id="22_diu10"]
 [ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
 [ext_resource type="ArrayMesh" uid="uid://bb1mb1a50tnjh" path="res://assets/Models/Character/Antenae.res" id="23_b1qr3"]
@@ -29,7 +30,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bt3ckq8nkq2dt" path="res://assets/Models/Character/Fish.res" id="24_jusxr"]
 [ext_resource type="Texture2D" uid="uid://bxbv0csmmi74q" path="res://assets/Images/bubbles_item_score.png" id="25_fjp5w"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
-[ext_resource type="Theme" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
+[ext_resource type="Theme" uid="uid://e1no5yb08xdc" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
 [ext_resource type="Texture2D" uid="uid://cxwqu5vpn8ge1" path="res://assets/Images/bubbles_timer.png" id="25_vpqqi"]
 [ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
 [ext_resource type="Script" path="res://src/menu_animations.gd" id="31_hqoms"]
@@ -95,72 +96,6 @@ bounce = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
 size = Vector3(2, 0.1, 2)
-
-[sub_resource type="Animation" id="Animation_7nyq5"]
-resource_name = "starting"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Control/TopBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
-"transitions": PackedFloat32Array(-2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(0, -100), Vector2(0, 0), Vector2(0, 0), Vector2(0, -100)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Control/BottomBar:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
-"transitions": PackedFloat32Array(-2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 648), Vector2(0, 548), Vector2(0, 548), Vector2(0, 648)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/FishContainer:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.73333, 2.96667),
-"transitions": PackedFloat32Array(0.210224, 0.210224),
-"update": 0,
-"values": [Vector2(320, 68), Vector2(727, 270)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/BG:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.666667, 1.16667, 2.2),
-"transitions": PackedFloat32Array(0.233258, 0.233258, 0.233258, 0.233258),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MenuAnimations")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.76667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"enable_inputs"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_3og02"]
 length = 0.001
@@ -262,6 +197,72 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(0.233258),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nyq5"]
+resource_name = "starting"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Control/TopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, 0), Vector2(0, 0), Vector2(0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Control/BottomBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 548), Vector2(0, 548), Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/FishContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.73333, 2.96667),
+"transitions": PackedFloat32Array(0.210224, 0.210224),
+"update": 0,
+"values": [Vector2(320, 68), Vector2(727, 270)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.16667, 2.2),
+"transitions": PackedFloat32Array(0.233258, 0.233258, 0.233258, 0.233258),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuAnimations")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.76667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_inputs"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_marit"]
@@ -699,6 +700,18 @@ transform = Transform3D(-0.819022, -0.573762, 0, 0.573762, -0.819022, 0, 0, 0, 1
 [node name="building12" parent="Environment" instance=ExtResource("11_qhdgi")]
 transform = Transform3D(-0.865589, 0.500756, 0, -0.493673, -0.853346, -0.167595, -0.083924, -0.145068, 0.985856, 34.9684, -33.0528, -11.2098)
 
+[node name="Bench2" parent="Environment" instance=ExtResource("22_1sij0")]
+transform = Transform3D(0.00975432, 0.0350139, 0.999339, -0.963317, 0.268365, 3.72529e-09, -0.268188, -0.962681, 0.0363472, 1.28703, 21.7433, -45.2409)
+
+[node name="Bench3" parent="Environment" instance=ExtResource("22_1sij0")]
+transform = Transform3D(0.00975432, 0.142668, 0.989722, -0.963317, 0.266797, -0.0289646, -0.268188, -0.953134, 0.140037, 6.91211, 21.6781, -44.8018)
+
+[node name="Bench4" parent="Environment" instance=ExtResource("22_1sij0")]
+transform = Transform3D(0.803867, -0.593482, 0.0397, 0.304683, 0.35353, -0.884412, 0.510848, 0.723046, 0.465016, -29.0307, 19.8575, 36.8018)
+
+[node name="Bench5" parent="Environment" instance=ExtResource("22_1sij0")]
+transform = Transform3D(-0.803867, -0.594349, -0.0233935, -0.304683, 0.377675, 0.874374, -0.510848, 0.710008, -0.484688, -28.2601, 20.096, 37.1763)
+
 [node name="building5" parent="Environment" instance=ExtResource("9_6lns7")]
 transform = Transform3D(-0.990031, 0.140849, 0, -0.140849, -0.990031, 0, 0, 0, 1, 4.6587, -51.5654, -3.08381)
 
@@ -747,6 +760,9 @@ transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 
 [node name="Building10" parent="Environment" instance=ExtResource("7_pp32y")]
 transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
 
+[node name="Bench6" parent="Environment" instance=ExtResource("22_1sij0")]
+transform = Transform3D(0.712277, 0.701843, -0.00878492, -0.677084, 0.683744, -0.272122, -0.184981, 0.199775, 0.962223, 27.2596, 40.0523, 12.603)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_1rqhg")
 autoplay = true
@@ -770,6 +786,7 @@ grow_vertical = 2
 script = ExtResource("24_7slg2")
 
 [node name="boubleTimer" type="TextureRect" parent="UI/Control2"]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 447.0
 offset_right = 1335.0
@@ -1082,6 +1099,9 @@ script = ExtResource("31_hqoms")
 unique_name_in_owner = true
 wait_time = 60.0
 script = ExtResource("33_bnchl")
+
+[node name="Bench2" parent="." instance=ExtResource("22_1sij0")]
+transform = Transform3D(0.447362, -1.11887, -0.958005, 1.32165, -0.137109, 0.777307, -0.650287, -1.04838, 0.920757, -40.0227, -14.5576, -37.5199)
 
 [connection signal="pressed" from="UI/Menu/Button" to="MenuAnimations" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
