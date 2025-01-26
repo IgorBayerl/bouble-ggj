@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=45 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
 [ext_resource type="ArrayMesh" uid="uid://dfnds672bd05o" path="res://assets/Models/Character/Bowl.res" id="22_diu10"]
 [ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
+[ext_resource type="ArrayMesh" uid="uid://bb1mb1a50tnjh" path="res://assets/Models/Character/Antenae.res" id="23_b1qr3"]
 [ext_resource type="Script" path="res://src/control.gd" id="24_7slg2"]
 [ext_resource type="ArrayMesh" uid="uid://bt3ckq8nkq2dt" path="res://assets/Models/Character/Fish.res" id="24_jusxr"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
@@ -62,14 +63,14 @@ albedo_texture = ExtResource("4_26jfq")
 uv1_triplanar = true
 uv1_triplanar_sharpness = 10.1965
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
-size = Vector3(2, 0.1, 2)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0lk3o"]
 friction = 0.0
 bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
+size = Vector3(2, 0.1, 2)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yvg4l"]
 noise_type = 5
@@ -121,21 +122,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.3505, 0)
 [node name="FollowPosition" type="Node3D" parent="NewPlayer"]
 transform = Transform3D(1, 0, 0, 0, 0.931259, 0.364357, 0, -0.364357, 0.931259, 0, 8.15233, 12.348)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[node name="WorldSphere" type="CSGSphere3D" parent="."]
 use_collision = true
 radius = 50.0
 radial_segments = 50
 rings = 25
 material = SubResource("StandardMaterial3D_s4dro")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112672, 37.3759, -18.4687)
 radius = 10.0
 radial_segments = 50
 rings = 25
 material = SubResource("StandardMaterial3D_8mmwh")
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1.34307, 0, 0, 0, 1.20125, 0.6007, 0, -0.6007, 1.20125, 0.0396438, 55.73, -27.8633)
 operation = 2
 radius = 10.0
@@ -143,14 +144,14 @@ radial_segments = 25
 rings = 8
 material = SubResource("StandardMaterial3D_m24g0")
 
-[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1.67165, -0.000170161, 0.000295415, 0.000335556, 1.07722, -1.27829, -6.0223e-05, 1.27829, 1.07722, 0.0121675, 20.9105, 26.9032)
 radius = 10.0
 radial_segments = 50
 rings = 25
 material = SubResource("StandardMaterial3D_8mmwh")
 
-[node name="CSGSphere3D4" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1.34307, -0.000154848, -0.000158264, -1.38376e-05, 0.899324, -0.997522, 0.000220984, 0.997522, 0.899324, 0.0396438, 39.028, 48.2841)
 operation = 2
 radius = 10.0
@@ -158,28 +159,28 @@ radial_segments = 25
 rings = 8
 material = SubResource("StandardMaterial3D_m24g0")
 
-[node name="CSGSphere3D5" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(9.42895, -19.8116, -6.51914, 6.62421, 27.1386, -7.22097, 3.39149, 2.0731, 32.2282, 34.8656, 27.3439, 12.6309)
 radius = 0.41029
 radial_segments = 24
 rings = 12
 material = SubResource("StandardMaterial3D_h6geh")
 
-[node name="CSGSphere3D6" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D6" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(11.0813, -12.9773, 0.62885, 4.63378, 31.055, -0.484239, -0.140383, 0.689309, 33.6552, 43.0882, 16.9505, 0.682127)
 radius = 0.41029
 radial_segments = 24
 rings = 12
 material = SubResource("StandardMaterial3D_h6geh")
 
-[node name="CSGSphere3D7" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D7" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(9.86606, -12.9773, -14.1543, 3.99934, 31.055, -6.57687, 5.56361, 0.689309, 29.8278, 38.2652, 14.4652, 21.8526)
 radius = 0.41029
 radial_segments = 24
 rings = 12
 material = SubResource("StandardMaterial3D_h6geh")
 
-[node name="CSGSphere3D8" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D8" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(0.971209, 0, 0, 0, 0.971209, 0, 0, 0, 0.971209, -4.60039, -3.03966, -3.32282)
 use_collision = true
 radius = 50.0
@@ -187,21 +188,21 @@ radial_segments = 30
 rings = 25
 material = SubResource("StandardMaterial3D_n6g2t")
 
-[node name="CSGSphere3D9" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D9" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(0.313582, 0, 0, 0, 0.0890787, 0, 0, 0, 0.313582, 0, 45.6783, 0)
 use_collision = true
 radius = 50.0
 radial_segments = 15
 material = SubResource("StandardMaterial3D_n6g2t")
 
-[node name="CSGSphere3D10" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D10" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(-5.92222, -28.4368, 7.0122, 5.13484, -14.9378, -26.5154, 9.1021, -10.0753, 19.5208, -23.7969, 19.3428, 33.6824)
 radius = 0.41029
 radial_segments = 24
 rings = 12
 material = SubResource("StandardMaterial3D_h6geh")
 
-[node name="CSGSphere3D12" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D12" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1.93349, 0, 0, 0, 1.72932, 0.86477, 0, -0.86477, 1.72932, 51.8757, -26.0875, 25.2248)
 operation = 2
 radius = 10.0
@@ -209,7 +210,7 @@ radial_segments = 25
 rings = 8
 material = SubResource("StandardMaterial3D_m24g0")
 
-[node name="CSGSphere3D13" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D13" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(1.93349, 0, 0, 0, 1.72932, 0.86477, 0, -0.86477, 1.72932, 37.9601, -33.4873, 43.8036)
 operation = 2
 radius = 10.0
@@ -217,7 +218,7 @@ radial_segments = 25
 rings = 8
 material = SubResource("StandardMaterial3D_m24g0")
 
-[node name="CSGSphere3D11" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D11" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(0.797808, 0, 0, 0, 0.797808, 0, 0, 0, 0.797808, -7.92552, -3.03966, -4.91434)
 use_collision = true
 radius = 50.0
@@ -225,14 +226,14 @@ radial_segments = 30
 rings = 25
 material = SubResource("StandardMaterial3D_n6g2t")
 
-[node name="CSGSphere3D14" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D14" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(9.00806, -3.50232, -21.9927, 2.59259, 32.7217, 3.12983, 7.51133, -7.09391, 25.2948, -37.5458, -14.3917, -31.5695)
 radius = 0.41029
 radial_segments = 24
 rings = 12
 material = SubResource("StandardMaterial3D_x6fmk")
 
-[node name="CSGSphere3D15" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D15" type="CSGSphere3D" parent="WorldSphere"]
 transform = Transform3D(5.05347, -0.223792, -30.5396, 2.59259, 32.7217, 3.12983, 10.5843, -7.9082, 13.8145, -27.3456, -14.3917, -39.9548)
 radius = 0.41029
 radial_segments = 24
@@ -560,7 +561,13 @@ transform = Transform3D(0.724461, -0.689316, 0.000457153, 0.689316, 0.72446, -0.
 [node name="building13" parent="Environment" instance=ExtResource("11_qhdgi")]
 transform = Transform3D(-0.865589, 0.500756, 0, -0.418016, -0.722568, -0.550597, -0.275715, -0.476591, 0.834771, 21.8007, -36.89, -25.3793)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Building9" parent="Environment" instance=ExtResource("7_pp32y")]
+transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 0.32803, 0.938333, -0.109214, -18.1998, -4.08792, 45.1093)
+
+[node name="Building10" parent="Environment" instance=ExtResource("7_pp32y")]
+transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
+
+[node name="FishContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -574,65 +581,66 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.930059, 0.941135)
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="FishContainer"]
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65616e-08, 0, 327.006)
+[node name="Camera3D" type="Camera3D" parent="FishContainer/SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00366775, 0.0100722, 327.004)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FishContainer/SubViewport"]
 transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -2.79421, 330.384)
 cast_shadow = 0
 mesh = ExtResource("22_diu10")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FishContainer/SubViewport"]
+transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -3.0019, 330.384)
+cast_shadow = 0
+mesh = ExtResource("23_b1qr3")
+
+[node name="FishHead" type="Node3D" parent="FishContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.9, 0, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.9, 0, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.9)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.9)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
+[node name="RigidBody3D" type="RigidBody3D" parent="FishContainer/SubViewport/FishHead"]
 physics_material_override = SubResource("PhysicsMaterial_0lk3o")
 gravity_scale = 0.0
 script = ExtResource("21_6kw36")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FishContainer/SubViewport/FishHead/RigidBody3D"]
 transform = Transform3D(-0.901486, -3.94052e-08, 2.68663e-08, -3.94052e-08, 0.901486, 3.94052e-08, -2.68663e-08, 3.94052e-08, -0.901486, 0.000406742, -1.70876, -0.0462341)
 mesh = ExtResource("24_jusxr")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FishContainer/SubViewport/FishHead/RigidBody3D"]
 shape = SubResource("SphereShape3D_kja6f")
 
-[node name="Building1" parent="." instance=ExtResource("7_pp32y")]
-transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 0.32803, 0.938333, -0.109214, -18.1998, -4.08792, 45.1093)
+[node name="StaticBody3D" type="StaticBody3D" parent="FishContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
 
-[node name="Building2" parent="." instance=ExtResource("7_pp32y")]
-transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.9, 0, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.9, 0, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.9)
+shape = SubResource("BoxShape3D_mspdx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_1rqhg")

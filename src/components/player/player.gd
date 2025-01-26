@@ -120,6 +120,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	anim.speed_scale = velocity.length() * 0.4
+	bouble.rotate_x(-velocity.length() * 0.01)
+	bouble.rotate_y(-target_rotation_speed*0.05)
+	#bouble.rotate_x(velocity.x * 0.01)
+	#bouble.rotate_y(velocity.y * 0.01)
+	#bouble.rotate_z(velocity.z * 0.01)
 	
 	move_and_slide()
 
