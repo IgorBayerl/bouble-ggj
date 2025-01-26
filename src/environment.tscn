@@ -22,15 +22,15 @@
 [ext_resource type="Resource" uid="uid://teqmbgdh5kxr" path="res://src/items/plant.tres" id="19_victx"]
 [ext_resource type="Resource" uid="uid://rbu42pb2xucg" path="res://src/items/alien.tres" id="20_mjsx2"]
 [ext_resource type="Script" path="res://src/components/camera/fishEffects.gd" id="21_6kw36"]
-[ext_resource type="PackedScene" uid="uid://cdw3cr8lulcwh" path="res://assets/Models/Bench.blend" id="22_1sij0"]
 [ext_resource type="ArrayMesh" uid="uid://dfnds672bd05o" path="res://assets/Models/Character/Bowl.res" id="22_diu10"]
+[ext_resource type="PackedScene" uid="uid://ckxoyu5if1kh8" path="res://assets/Prefabs/bench.tscn" id="22_vspjf"]
 [ext_resource type="AudioStream" uid="uid://c0wx151xxye3q" path="res://assets/Sound/aliens-but-music.wav" id="23_1rqhg"]
 [ext_resource type="ArrayMesh" uid="uid://bb1mb1a50tnjh" path="res://assets/Models/Character/Antenae.res" id="23_b1qr3"]
 [ext_resource type="Script" path="res://src/control.gd" id="24_7slg2"]
 [ext_resource type="ArrayMesh" uid="uid://bt3ckq8nkq2dt" path="res://assets/Models/Character/Fish.res" id="24_jusxr"]
 [ext_resource type="Texture2D" uid="uid://bxbv0csmmi74q" path="res://assets/Images/bubbles_item_score.png" id="25_fjp5w"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
-[ext_resource type="Theme" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
+[ext_resource type="Theme" uid="uid://e1no5yb08xdc" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
 [ext_resource type="Texture2D" uid="uid://cxwqu5vpn8ge1" path="res://assets/Images/bubbles_timer.png" id="25_vpqqi"]
 [ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
 [ext_resource type="Script" path="res://src/menu_animations.gd" id="31_hqoms"]
@@ -748,22 +748,22 @@ transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 
 [node name="Building10" parent="Environment" instance=ExtResource("7_pp32y")]
 transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
 
-[node name="Bench2" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench8" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(0.00975432, 0.0350139, 0.999339, -0.963317, 0.268365, 3.72529e-09, -0.268188, -0.962681, 0.0363472, 1.28703, 21.7433, -45.2409)
 
-[node name="Bench3" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench9" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(0.00975432, 0.142668, 0.989722, -0.963317, 0.266797, -0.0289646, -0.268188, -0.953134, 0.140037, 6.91211, 21.6781, -44.8018)
 
-[node name="Bench4" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench10" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(0.803867, -0.593482, 0.0397, 0.304683, 0.35353, -0.884412, 0.510848, 0.723046, 0.465016, -29.0307, 19.8575, 36.8018)
 
-[node name="Bench5" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench11" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(-0.803867, -0.594349, -0.0233935, -0.304683, 0.377675, 0.874374, -0.510848, 0.710008, -0.484688, -28.2601, 20.096, 37.1763)
 
-[node name="Bench6" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench12" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(0.712277, 0.701843, -0.00878492, -0.677084, 0.683744, -0.272122, -0.184981, 0.199775, 0.962223, 27.2596, 40.0523, 12.603)
 
-[node name="Bench7" parent="Environment" instance=ExtResource("22_1sij0")]
+[node name="Bench13" parent="Environment" instance=ExtResource("22_vspjf")]
 transform = Transform3D(0.447362, -1.11887, -0.958005, 1.32165, -0.137109, 0.777307, -0.650287, -1.04838, 0.920757, -40.0227, -14.5576, -37.5199)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
