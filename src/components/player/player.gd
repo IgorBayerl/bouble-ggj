@@ -9,7 +9,60 @@ extends CharacterBody3D
 @export var max_rotation_speed: float = 2.0  # Max radians/second
 @onready var anim: AnimationPlayer = $"fish_walkAnim/AnimationPlayer"
 
+@export var spawn_radius: float = 2.0  # Maximum distance from bouble center
+@onready var bouble: Area3D = %Area3D
+@export var spawn_height_offset: float = 1.0
+var current_spawns: Array[Node3D] = []
+
 var current_rotation_velocity: float = 0.0
+
+func _ready() -> void:
+	GameManager.items_changed.connect(_handle_items_changed)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_M:
+		var new_item := GameItem.new()
+		new_item.item_scene = preload("res://assets/Models/Gem.blend")
+		GameManager.item_collected.emit(new_item)
+		_handle_items_changed()
+###### INIT
+func _handle_items_changed():
+	print("Items changed")
+	
+	# Clear existing spawned items
+	for spawn in current_spawns:
+		spawn.queue_free()
+	current_spawns.clear()
+	
+	# Spawn new items inside the bouble
+	for item in GameManager.items_collected:
+		if item.item_scene:
+			var new_item = item.item_scene.instantiate()
+			bouble.add_child(new_item)
+			
+			# Scale the item to 30% of its original size
+			new_item.scale = Vector3(0.3, 0.3, 0.3)
+			
+			# Set its position randomly inside bouble within the radius
+			new_item.global_position = get_random_position_inside_radius()
+			
+			current_spawns.append(new_item)
+		else:
+			push_warning("Item '%s' has no scene assigned" % item.item_name)
+
+func get_random_position_inside_radius() -> Vector3:
+	var base_pos = bouble.global_position
+	
+	# Generate a random point inside a sphere
+	var random_offset = Vector3(
+		randf_range(-1, 1),
+		randf_range(-1, 1),
+		randf_range(-1, 1)
+	).normalized() * randf_range(0, spawn_radius)  # Scale within the radius
+	
+	# Apply offset and height adjustment
+	return base_pos + random_offset
+##### END
 
 func _physics_process(delta: float) -> void:
 	var down_dir := (planet_center - global_position).normalized()
