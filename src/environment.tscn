@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=54 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
@@ -30,8 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://bxbv0csmmi74q" path="res://assets/Images/bubbles_item_score.png" id="25_fjp5w"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
 [ext_resource type="Theme" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
+[ext_resource type="Texture2D" uid="uid://cxwqu5vpn8ge1" path="res://assets/Images/bubbles_timer.png" id="25_vpqqi"]
 [ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
 [ext_resource type="Script" path="res://src/menu_animations.gd" id="31_hqoms"]
+[ext_resource type="Script" path="res://src/timer.gd" id="33_bnchl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
 panorama = ExtResource("2_1v4xy")
@@ -767,6 +769,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("24_7slg2")
 
+[node name="boubleTimer" type="TextureRect" parent="UI/Control2"]
+offset_left = 14.0
+offset_top = 447.0
+offset_right = 1335.0
+offset_bottom = 1841.0
+scale = Vector2(0.138975, 0.114797)
+texture = ExtResource("25_vpqqi")
+flip_h = true
+
 [node name="TextureRect" type="TextureRect" parent="UI/Control2"]
 layout_mode = 1
 offset_left = 0.999989
@@ -799,9 +810,9 @@ text = "Items left: 0"
 [node name="PointCount" type="Label" parent="UI/Control2"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 36.0
+offset_left = 50.0
 offset_top = 118.0
-offset_right = 1036.0
+offset_right = 1050.0
 offset_bottom = 163.0
 scale = Vector2(1.355, 1.355)
 theme_override_font_sizes/font_size = 50
@@ -825,6 +836,17 @@ layout_mode = 2
 [node name="ItemUi" parent="UI/Control2/VBoxContainer3/VBoxContainer" instance=ExtResource("25_fmn34")]
 layout_mode = 2
 text = "ItemName1"
+
+[node name="TimerLabel" type="Label" parent="UI/Control2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 114.0
+offset_top = 529.0
+offset_right = 154.0
+offset_bottom = 544.0
+scale = Vector2(1.94, 1.94)
+text = "60
+"
 
 [node name="BG" type="TextureRect" parent="UI"]
 layout_mode = 1
@@ -990,12 +1012,78 @@ offset_right = 734.0
 offset_bottom = 639.0
 text = "Collect items and bring to the spaceship"
 
+[node name="GameOver" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("25_kidw8")
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -31.0
+offset_right = 1292.0
+offset_bottom = 684.0
+color = Color(0, 0, 0, 0.423529)
+
+[node name="GameOverText" type="Label" parent="GameOver"]
+layout_mode = 2
+offset_left = 392.0
+offset_top = 41.0
+offset_right = 1544.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 70
+text = "Game Over"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -45.0
+offset_right = -2.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.06, 2.06)
+
+[node name="Points" type="Label" parent="GameOver/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "aaaa"
+
+[node name="ItemsNotDelivered" type="Label" parent="GameOver/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Not Delivered
+"
+
+[node name="ItemsLeftInTheMapLabel" type="Label" parent="GameOver/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Items Left
+"
+
 [node name="MenuAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_marit")
 }
 script = ExtResource("31_hqoms")
 
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+script = ExtResource("33_bnchl")
+
 [connection signal="pressed" from="UI/Menu/Button" to="MenuAnimations" method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
 
 [editable path="World"]
