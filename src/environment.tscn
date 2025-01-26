@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmylravv6ol87"]
+[gd_scene load_steps=51 format=3 uid="uid://bmylravv6ol87"]
 
 [ext_resource type="Texture2D" uid="uid://c5wf4dodxhw6h" path="res://assets/Textures/Skybox/panorama_image.png" id="2_1v4xy"]
 [ext_resource type="PackedScene" uid="uid://wsicecgxtrqn" path="res://src/components/player/player.tscn" id="2_8e2dp"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" path="res://src/control.gd" id="24_7slg2"]
 [ext_resource type="ArrayMesh" uid="uid://bt3ckq8nkq2dt" path="res://assets/Models/Character/Fish.res" id="24_jusxr"]
 [ext_resource type="PackedScene" uid="uid://ds4bbeij0f8fl" path="res://src/components/item/item_ui.tscn" id="25_fmn34"]
+[ext_resource type="Theme" path="res://assets/UI/menu_theme.tres" id="25_kidw8"]
 [ext_resource type="Shader" path="res://src/game_example.gdshader" id="26_tg3mm"]
+[ext_resource type="Script" path="res://src/menu_animations.gd" id="31_hqoms"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pk5gm"]
 panorama = ExtResource("2_1v4xy")
@@ -63,15 +65,6 @@ albedo_texture = ExtResource("4_26jfq")
 uv1_triplanar = true
 uv1_triplanar_sharpness = 10.1965
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0lk3o"]
-friction = 0.0
-bounce = 0.5
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
-size = Vector3(2, 0.1, 2)
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yvg4l"]
 noise_type = 5
 frequency = 0.5
@@ -82,14 +75,198 @@ noise = SubResource("FastNoiseLite_yvg4l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ht51f"]
 shader = ExtResource("26_tg3mm")
-shader_parameter/line_color = Color(1, 1, 1, 0.184314)
+shader_parameter/line_color = Color(1, 1, 1, 0.47451)
 shader_parameter/line_count = 0.95
-shader_parameter/line_density = 0.178
+shader_parameter/line_density = 0.26
 shader_parameter/line_faloff = 0.106
 shader_parameter/mask_size = 0.186
 shader_parameter/mask_edge = 0.592
 shader_parameter/animation_speed = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_5mxqw")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0lk3o"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kja6f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mspdx"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="Animation" id="Animation_7nyq5"]
+resource_name = "starting"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Control/TopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, 0), Vector2(0, 0), Vector2(0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Control/BottomBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1.13333, 2.43333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 548), Vector2(0, 548), Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/FishContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.73333, 2.96667),
+"transitions": PackedFloat32Array(0.210224, 0.210224),
+"update": 0,
+"values": [Vector2(320, 68), Vector2(727, 270)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.16667, 2.2),
+"transitions": PackedFloat32Array(0.233258, 0.233258, 0.233258, 0.233258),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuAnimations")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.76667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_inputs"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3og02"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Control/TopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Control/BottomBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/FishContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 68)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x7qkl"]
+resource_name = "menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Control/TopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Control/BottomBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/FishContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0475963),
+"transitions": PackedFloat32Array(0.210224),
+"update": 0,
+"values": [Vector2(320, 68)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(0.233258),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_marit"]
+_data = {
+"RESET": SubResource("Animation_3og02"),
+"menu": SubResource("Animation_x7qkl"),
+"starting": SubResource("Animation_7nyq5")
+}
 
 [node name="Game" type="Node3D"]
 
@@ -567,114 +744,84 @@ transform = Transform3D(0.94398, -0.330004, 0, -0.036041, -0.103096, -0.994018, 
 [node name="Building10" parent="Environment" instance=ExtResource("7_pp32y")]
 transform = Transform3D(-0.0105978, -0.980348, 0.196992, 0.866256, -0.107408, -0.487919, 0.499489, 0.165475, 0.85037, -49.0255, -9.09014, 3.73354)
 
-[node name="FishContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -396.0
-offset_top = -376.0
-offset_right = 118.0
-offset_bottom = 138.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.930059, 0.941135)
-
-[node name="SubViewport" type="SubViewport" parent="FishContainer"]
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="FishContainer/SubViewport"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00366775, 0.0100722, 327.004)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="FishContainer/SubViewport"]
-transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -2.79421, 330.384)
-cast_shadow = 0
-mesh = ExtResource("22_diu10")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="FishContainer/SubViewport"]
-transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -3.0019, 330.384)
-cast_shadow = 0
-mesh = ExtResource("23_b1qr3")
-
-[node name="FishHead" type="Node3D" parent="FishContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="FishContainer/SubViewport/FishHead"]
-physics_material_override = SubResource("PhysicsMaterial_0lk3o")
-gravity_scale = 0.0
-script = ExtResource("21_6kw36")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FishContainer/SubViewport/FishHead/RigidBody3D"]
-transform = Transform3D(-0.901486, -3.94052e-08, 2.68663e-08, -3.94052e-08, 0.901486, 3.94052e-08, -2.68663e-08, 3.94052e-08, -0.901486, 0.000406742, -1.70876, -0.0462341)
-mesh = ExtResource("24_jusxr")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FishContainer/SubViewport/FishHead/RigidBody3D"]
-shape = SubResource("SphereShape3D_kja6f")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="FishContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.9, 0, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.9, 0, 0)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.9)
-shape = SubResource("BoxShape3D_mspdx")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="FishContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.9)
-shape = SubResource("BoxShape3D_mspdx")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_1rqhg")
 autoplay = true
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("vbox_container")]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("25_kidw8")
+
+[node name="Control2" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("24_7slg2")
-vbox_container = NodePath("VBoxContainer2/VBoxContainer")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+alignment = 1
 
-[node name="PointCount" type="Label" parent="Control/VBoxContainer2"]
+[node name="ItemsLeft" type="Label" parent="UI/Control2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Items left: 0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Control2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PointCount" type="Label" parent="UI/Control2/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "0"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/Control2/HBoxContainer"]
 layout_mode = 2
 
-[node name="ItemUi" parent="Control/VBoxContainer2/VBoxContainer" instance=ExtResource("25_fmn34")]
+[node name="Label" type="Label" parent="UI/Control2/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Items in the bouble"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control2/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ItemUi" parent="UI/Control2/HBoxContainer/VBoxContainer3/VBoxContainer" instance=ExtResource("25_fmn34")]
 layout_mode = 2
 text = "ItemName1"
 
-[node name="SpeedLines" type="ColorRect" parent="Control"]
+[node name="BG" type="TextureRect" parent="UI"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1v4xy")
+
+[node name="SpeedLines" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ht51f")
 layout_mode = 1
 anchors_preset = 15
@@ -682,5 +829,154 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FishContainer" type="SubViewportContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.930059, 0.941135)
+
+[node name="SubViewport" type="SubViewport" parent="UI/FishContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="UI/FishContainer/SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00366775, 0.0100722, 327.004)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="UI/FishContainer/SubViewport"]
+transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -2.79421, 330.384)
+cast_shadow = 0
+mesh = ExtResource("22_diu10")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="UI/FishContainer/SubViewport"]
+transform = Transform3D(1.47317, 0, 0, 0, 1.47317, 1.57013e-14, 0, -1.57013e-14, 1.47317, 0, -3.0019, 330.384)
+cast_shadow = 0
+mesh = ExtResource("23_b1qr3")
+
+[node name="FishHead" type="Node3D" parent="UI/FishContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="UI/FishContainer/SubViewport/FishHead"]
+physics_material_override = SubResource("PhysicsMaterial_0lk3o")
+gravity_scale = 0.0
+script = ExtResource("21_6kw36")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UI/FishContainer/SubViewport/FishHead/RigidBody3D"]
+transform = Transform3D(-0.901486, -3.94052e-08, 2.68663e-08, -3.94052e-08, 0.901486, 3.94052e-08, -2.68663e-08, 3.94052e-08, -0.901486, 0.000406742, -1.70876, -0.0462341)
+mesh = ExtResource("24_jusxr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/FishHead/RigidBody3D"]
+shape = SubResource("SphereShape3D_kja6f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="UI/FishContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.242)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.9, 0, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.9, 0, 0)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="UI/FishContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.9)
+shape = SubResource("BoxShape3D_mspdx")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="ColorRect" parent="UI/Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="UI/Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -189.0
+offset_right = -36.0
+offset_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="UI/Menu"]
+layout_mode = 0
+offset_left = -91.0
+offset_top = -8.0
+offset_right = 236.0
+offset_bottom = 43.0
+text = "Start"
+
+[node name="Hints" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI/Hints"]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 624.0
+offset_right = 734.0
+offset_bottom = 639.0
+text = "Collect items and bring to the spaceship"
+
+[node name="MenuAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_marit")
+}
+script = ExtResource("31_hqoms")
+
+[connection signal="pressed" from="UI/Menu/Button" to="MenuAnimations" method="_on_button_pressed"]
 
 [editable path="World"]

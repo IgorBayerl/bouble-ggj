@@ -73,17 +73,25 @@ func get_deterministic_position(index: int) -> Vector3:
 	)
 
 ##### END
+# Extracted input collection function
+func get_player_input() -> Dictionary:
+	return {
+		"rotate": Input.get_axis("turn_left", "turn_right"),
+		"move": Input.get_axis("move_backward", "move_forward")
+	}
 
 func _physics_process(delta: float) -> void:
 	var down_dir := (planet_center - global_position).normalized()
 	var desired_up := -down_dir
 	self.up_direction = desired_up
-	
+
+	# Only collect input if the game has started
+	var input_values = get_player_input() if GameManager.input_enabled else {"rotate": 0.0, "move": 0.0}
+
 	# Handle rotation input with acceleration
-	var rotate_input := Input.get_axis("turn_left", "turn_right")
-	var target_rotation_speed = -rotate_input * max_rotation_speed
+	var target_rotation_speed = -input_values["rotate"] * max_rotation_speed
 	
-	if rotate_input != 0:
+	if input_values["rotate"] != 0:
 		# Accelerate rotation
 		current_rotation_velocity = move_toward(
 			current_rotation_velocity, 
@@ -97,35 +105,31 @@ func _physics_process(delta: float) -> void:
 			0.0, 
 			rotation_decel * delta
 		)
-	
+
 	# Apply rotation
 	if current_rotation_velocity != 0:
 		rotate_player(current_rotation_velocity, delta)
-	
+
 	# Align with planetary surface
 	align_with_planet(desired_up)
-	
+
 	# Handle movement input
-	var move_input := Input.get_axis("move_backward", "move_forward")
-	var target_velocity = -transform.basis.z * move_input * max_speed
-	
+	var target_velocity = -transform.basis.z * input_values["move"] * max_speed
+
 	# Apply acceleration/deceleration
-	if move_input != 0:
+	if input_values["move"] != 0:
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector3.ZERO, deceleration * delta)
-	
+
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+
 	anim.speed_scale = velocity.length() * 0.4
 	bouble.rotate_x(-velocity.length() * 0.01)
-	bouble.rotate_y(-target_rotation_speed*0.05)
-	#bouble.rotate_x(velocity.x * 0.01)
-	#bouble.rotate_y(velocity.y * 0.01)
-	#bouble.rotate_z(velocity.z * 0.01)
-	
+	bouble.rotate_y(-target_rotation_speed * 0.05)
+
 	move_and_slide()
 
 func rotate_player(rotation_speed: float, delta: float) -> void:

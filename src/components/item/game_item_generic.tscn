@@ -9,7 +9,7 @@ radius = 1.021
 
 [sub_resource type="BoxMesh" id="BoxMesh_sn2qi"]
 
-[node name="GameItemGeneric" type="Node3D"]
+[node name="GameItemGeneric" type="Node3D" groups=["game_items", "item"]]
 script = ExtResource("1_n3ixt")
 
 [node name="Area3D" type="Area3D" parent="."]

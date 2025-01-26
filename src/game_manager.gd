@@ -8,6 +8,12 @@ signal items_changed()
 var items_collected: Array[GameItem] = []
 var points: int = 0
 
+var input_enabled: bool = false
+var in_menu: bool = true
+
+func count_game_items() -> int:
+	return get_tree().get_nodes_in_group("game_items").size()
+
 func _ready() -> void:
 	item_collected.connect(_handle_item_collected)
 	items_extracted.connect(_handle_items_extracted)

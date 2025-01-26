@@ -22,6 +22,7 @@ GameManager="*res://src/game_manager.gd"
 [display]
 
 window/size/always_on_top=true
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
@@ -35,6 +36,7 @@ enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
 
 player_group=""
 extractor=""
+game_items=""
 
 [input]
 
