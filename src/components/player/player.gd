@@ -63,14 +63,16 @@ func _handle_items_changed():
 
 func get_deterministic_position(index: int) -> Vector3:
 	var base_pos = bouble.global_position
-	var angle = deg_to_rad(index * 137.5)  # Golden angle
-	var radius = spawn_radius * sqrt(index + 1)  # Use current radius value
+	var phi = deg_to_rad(index * 137.5)  # Horizontal angle (golden angle)
+	var theta = deg_to_rad(index * 137.5 * 0.618)  # Vertical angle using golden ratio
+	var radius = spawn_radius * sqrt(index + 1)
 	
-	return base_pos + Vector3(
-		cos(angle) * radius,
-		spawn_height_offset,
-		sin(angle) * radius
-	)
+	# Convert spherical coordinates to Cartesian
+	var x = cos(phi) * sin(theta) * radius
+	var y = cos(theta) * radius  # This adds vertical variation
+	var z = sin(phi) * sin(theta) * radius
+	
+	return base_pos + Vector3(x, y + spawn_height_offset, z)
 
 ##### END
 # Extracted input collection function
