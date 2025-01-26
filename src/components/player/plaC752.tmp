@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://src/components/player/player.gd" id="1_xcivy"]
 [ext_resource type="Texture2D" uid="uid://d1kclgp1cbfw8" path="res://assets/icon.svg" id="2_yo7nk"]
 [ext_resource type="Shader" path="res://src/Shaders/BubbleShader.gdshader" id="3_vo35h"]
-[ext_resource type="PackedScene" uid="uid://c1uby12q8vt0r" path="res://assets/Models/Character/fish_walkAnim.glb" id="4_6y0qi"]
+[ext_resource type="PackedScene" uid="uid://kl02vnsb811b" path="res://assets/Models/Character/fish_walkAnim.glb" id="4_6y0qi"]
 [ext_resource type="Script" path="res://src/components/rotateObject.gd" id="4_phkib"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkmc0"]
 albedo_texture = ExtResource("2_yo7nk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jsaxi"]
-radius = 1.3
+radius = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sik15"]
 render_priority = 0
@@ -47,21 +47,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95108, 0)
 [node name="CSGBox3D2" type="CSGBox3D" parent="Bouble"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0129602, 0.665713)
 
-[node name="BoubleColision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, 0, 1, 0)
-shape = SubResource("SphereShape3D_jsaxi")
-
 [node name="Area3D" type="Area3D" parent="." groups=["player_group"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.83, 0, 0, 0, 1.83, 0, 0, 0, 1.83, 0, 0, 0)
+shape = SubResource("SphereShape3D_jsaxi")
+
+[node name="BoubleColision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.965, 0, 0, 0, 0.965, 0, 0, 0, 0.965, 0, 1, 0)
 shape = SubResource("SphereShape3D_jsaxi")
 
 [node name="BoubleMesh" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(4.545, 0, 0, 0, 4.545, 0, 0, 0, 4.545, 0, 1.01903, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.01903, 0)
 mesh = SubResource("SphereMesh_156be")
 script = ExtResource("4_phkib")
 

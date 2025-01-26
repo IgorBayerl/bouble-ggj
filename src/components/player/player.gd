@@ -9,10 +9,13 @@ extends CharacterBody3D
 @export var max_rotation_speed: float = 2.0  # Max radians/second
 @onready var anim: AnimationPlayer = $"fish_walkAnim/AnimationPlayer"
 
-@export var spawn_radius: float = 2.0  # Maximum distance from bouble center
+@export var spawn_radius: float = 1.0  # Maximum distance from bouble center
 @onready var bouble: Area3D = %Area3D
 @export var spawn_height_offset: float = 1.0
 var current_spawns: Array[Node3D] = []
+#BOuble mesh and colider
+@onready var bouble_mesh: MeshInstance3D = %BoubleMesh
+@onready var bouble_colision: CollisionShape3D = $Area3D/CollisionShape3D
 
 var current_rotation_velocity: float = 0.0
 
@@ -26,42 +29,49 @@ func _unhandled_input(event: InputEvent) -> void:
 		GameManager.item_collected.emit(new_item)
 		_handle_items_changed()
 ###### INIT
+func _handle_resize_bouble(value: int) -> void:
+	print("Bouble Size: %s" % value)
+	var mesh_value = value /3 + 4
+	var scale_vector: Vector3 = Vector3(mesh_value,mesh_value,mesh_value)
+	#bouble_colision.scale = scale_vector 
+	bouble_mesh.scale = scale_vector
+
 func _handle_items_changed():
 	print("Items changed")
+	_handle_resize_bouble(GameManager.items_collected.size())
+	# Clear only if we have fewer items than before
+	if current_spawns.size() > GameManager.items_collected.size():
+		for i in range(GameManager.items_collected.size(), current_spawns.size()):
+			current_spawns[i].queue_free()
+		current_spawns.resize(GameManager.items_collected.size())
 	
-	# Clear existing spawned items
-	for spawn in current_spawns:
-		spawn.queue_free()
-	current_spawns.clear()
-	
-	# Spawn new items inside the bouble
-	for item in GameManager.items_collected:
-		if item.item_scene:
-			var new_item = item.item_scene.instantiate()
-			bouble.add_child(new_item)
-			
-			# Scale the item to 30% of its original size
-			new_item.scale = Vector3(0.3, 0.3, 0.3)
-			
-			# Set its position randomly inside bouble within the radius
-			new_item.global_position = get_random_position_inside_radius()
-			
-			current_spawns.append(new_item)
-		else:
-			push_warning("Item '%s' has no scene assigned" % item.item_name)
+	# Add/update items
+	for i in range(GameManager.items_collected.size()):
+		var item = GameManager.items_collected[i]
+		
+		if i >= current_spawns.size():  # New item
+			if item.item_scene:
+				var new_item = item.item_scene.instantiate()
+				bouble.add_child(new_item)
+				new_item.scale = Vector3(0.3, 0.3, 0.3)
+				new_item.global_position = get_deterministic_position(i)
+				current_spawns.append(new_item)
+			else:
+				push_warning("Item '%s' has no scene assigned" % item.item_name)
+		else:  # Existing item, update position
+			current_spawns[i].global_position = get_deterministic_position(i)
 
-func get_random_position_inside_radius() -> Vector3:
+func get_deterministic_position(index: int) -> Vector3:
 	var base_pos = bouble.global_position
+	var angle = deg_to_rad(index * 137.5)  # Golden angle
+	var radius = spawn_radius * sqrt(index + 1)  # Use current radius value
 	
-	# Generate a random point inside a sphere
-	var random_offset = Vector3(
-		randf_range(-1, 1),
-		randf_range(-1, 1),
-		randf_range(-1, 1)
-	).normalized() * randf_range(0, spawn_radius)  # Scale within the radius
-	
-	# Apply offset and height adjustment
-	return base_pos + random_offset
+	return base_pos + Vector3(
+		cos(angle) * radius,
+		spawn_height_offset,
+		sin(angle) * radius
+	)
+
 ##### END
 
 func _physics_process(delta: float) -> void:
